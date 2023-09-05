@@ -1,4 +1,4 @@
-package com.andy.part5_optionals;
+package com.andy.part5_optionals_exceptions;
 
 import java.util.Optional;
 import java.util.Random;

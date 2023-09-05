@@ -1,4 +1,4 @@
-package com.andy.parralelism.parallel_streams;
+package com.andy.part4_streams.parallel;
 
 import java.util.stream.IntStream;
 

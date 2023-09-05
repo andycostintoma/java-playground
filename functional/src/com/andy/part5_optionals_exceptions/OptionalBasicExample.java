@@ -1,9 +1,9 @@
-package com.andy.part5_optionals;
+package com.andy.part5_optionals_exceptions;
 
 import java.util.Optional;
 import java.util.Random;
 
-public class BasicOptionalExample {
+public class OptionalBasicExample {
     public static void main(String[] args) {
         Optional<Integer> nonEmptyOptional = Optional.of(42);
         Optional<Integer> emptyOptional = Optional.empty();

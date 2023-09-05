@@ -10,6 +10,38 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Illustrates parallel data processing with Streams in Java.
+ * This program counts the occurrences of distinct words in a text file using parallel Streams.
+ * <p>
+ * <strong>Concurrency versus Parallelism:</strong>
+ * Concurrency is about dealing with multiple tasks at once, while parallelism is about executing multiple tasks at once.
+ * This program demonstrates parallelism by processing data concurrently.
+ * </p>
+ * <p>
+ * <strong>Streams as Parallel Functional Pipelines:</strong>
+ * Java Streams provide an easy-to-use data processing pipeline with parallel processing capabilities.
+ * The use of the parallel() method switches the Stream into parallel mode, enabling parallel processing.
+ * </p>
+ * <p>
+ * <strong>Choosing the Right Data Source:</strong>
+ * This program uses Files.lines() to read lines from a text file, which is a suitable data source for parallel processing.
+ * </p>
+ * <p>
+ * <strong>Number of Elements:</strong>
+ * The text file contains a large number of lines, enabling efficient parallel processing with multiple threads.
+ * </p>
+ * <p>
+ * <strong>Stream Operations:</strong>
+ * Stream operations, such as mapping, filtering, and collecting, are applied to process the data efficiently in parallel.
+ * </p>
+ * <p>
+ * <strong>Available Resources:</strong>
+ * The program utilizes the available CPU cores and memory to achieve parallelism.
+ * It demonstrates Amdahl's law, which governs the theoretical limits of parallel execution.
+ * </p>
+ */
+
 public class ReadingLineByLineParallel {
 
     public static void main(String[] args) {
@@ -38,14 +70,6 @@ public class ReadingLineByLineParallel {
                                     word -> 1,
                                     Integer::sum
                             ));
-
-            // Process each line:
-            // 1. Remove punctuation
-            // 2. Split line into words
-            // 3. Flatten the array of words into a Stream of words
-            // 4. Filter out non-word elements
-            // 5. Convert words to lowercase
-            // 6. Collect into a Map with word as key and word count as value
 
             System.out.println("Word Count: " + wordCount);
 
