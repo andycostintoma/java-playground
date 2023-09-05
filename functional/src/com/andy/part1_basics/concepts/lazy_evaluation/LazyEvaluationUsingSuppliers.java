@@ -1,4 +1,4 @@
-package com.andy.part6_lazy_evaluation;
+package com.andy.part1_basics.concepts.lazy_evaluation;
 
 import java.util.function.Supplier;
 

@@ -1,4 +1,4 @@
-package com.andy.part1_basics.concepts;
+package com.andy.part1_basics.concepts.lazy_evaluation;
 
 import java.util.HashMap;
 import java.util.Map;
