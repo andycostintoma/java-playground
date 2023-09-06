@@ -1,4 +1,4 @@
-package com.andy.basics.futures;
+package com.andy.futures.old_way;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.andy.basics.futures;
+package com.andy.futures.old_way;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

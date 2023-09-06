@@ -1,4 +1,4 @@
-package com.andy.customer_service;
+package com.andy.futures.customer_service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
