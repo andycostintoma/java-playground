@@ -1,6 +1,6 @@
 package com.andy.parralelism.fork_join;
 
-import com.andy.parralelism.basics.merge_sort.SequentialMergeSort;
+import com.andy.parralelism.basics.SequentialMergeSort;
 
 import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
