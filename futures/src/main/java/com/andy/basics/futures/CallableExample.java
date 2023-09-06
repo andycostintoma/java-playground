@@ -1,4 +1,4 @@
-package com.andy.basics;
+package com.andy.basics.futures;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

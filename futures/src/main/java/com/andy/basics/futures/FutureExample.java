@@ -1,4 +1,4 @@
-package com.andy.basics;
+package com.andy.basics.futures;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +27,14 @@ public class FutureExample {
 
         // Create a list of Callable tasks
         List<Callable<Integer>> tasks = new ArrayList<>();
+
         tasks.add(() -> {
             Thread.sleep(2000);
             return 42;
         });
+
         tasks.add(() -> 100);
+
         tasks.add(() -> {
             Thread.sleep(1500);
             return 10;

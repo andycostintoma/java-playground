@@ -1,4 +1,4 @@
-package com.andy.customer;
+package com.andy.customer_service;
 
 import java.io.Serializable;
 import java.util.Objects;
