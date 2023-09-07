@@ -1,4 +1,4 @@
-package com.andy.part2_functional_interfaces;
+package com.andy.part2_functional_interfaces.functional_support;
 
 import java.util.function.Function;
 
