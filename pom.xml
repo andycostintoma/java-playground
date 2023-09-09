@@ -12,7 +12,8 @@
     <modules>
         <module>dsa</module>
         <module>functional</module>
-        <module>futures</module>
+        <module>design-patterns</module>
+        <module>async-reactive</module>
         <module>multithreading-parallelism</module>
     </modules>
 </project>
