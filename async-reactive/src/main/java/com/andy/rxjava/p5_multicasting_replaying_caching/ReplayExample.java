@@ -1,4 +1,4 @@
-package com.andy.rxjava.p4_reactive_operators.p2_multicasting_replaying_caching;
+package com.andy.rxjava.p5_multicasting_replaying_caching;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;

@@ -1,4 +1,4 @@
-package com.andy.rxjava.p4_reactive_operators.p3_subjects;
+package com.andy.rxjava.p6_subjects;
 
 import io.reactivex.rxjava3.subjects.ReplaySubject;
 import io.reactivex.rxjava3.subjects.Subject;

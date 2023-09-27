@@ -1,4 +1,4 @@
-package com.andy.rxjava.p4_reactive_operators.p1_combining;
+package com.andy.rxjava.p4_combining_observables;
 
 import io.reactivex.rxjava3.core.Observable;
 import java.time.LocalTime;
