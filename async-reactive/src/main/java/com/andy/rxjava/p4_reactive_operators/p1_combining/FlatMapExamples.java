@@ -1,7 +1,6 @@
-package com.andy.rxjava.p4_reactive_operators.combining;
+package com.andy.rxjava.p4_reactive_operators.p1_combining;
 
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import java.util.concurrent.TimeUnit;
 
