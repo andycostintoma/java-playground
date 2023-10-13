@@ -1,7 +1,5 @@
-package com.andy.examples;
+package com.andy.examples.username;
 
-import com.andy.examples.username.InvalidUsernameException;
-import com.andy.examples.username.Username;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

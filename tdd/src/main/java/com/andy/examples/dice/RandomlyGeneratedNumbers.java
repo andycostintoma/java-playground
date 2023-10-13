@@ -1,4 +1,4 @@
-package com.andy.examples;
+package com.andy.examples.dice;
 
 import java.util.random.RandomGenerator;
 

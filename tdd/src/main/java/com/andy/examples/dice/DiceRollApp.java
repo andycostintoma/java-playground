@@ -1,4 +1,4 @@
-package com.andy.examples;
+package com.andy.examples.dice;
 
 public class DiceRollApp {
     public static void main(String[] args) {

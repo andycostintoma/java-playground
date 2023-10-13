@@ -1,4 +1,4 @@
-package com.andy.examples;
+package com.andy.examples.dice;
 
 public class DiceRoll {
     private final int NUMBER_OF_SIDES = 6;
