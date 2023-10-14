@@ -1,4 +1,4 @@
-package com.andy.examples;
+package com.andy.examples.mail;
 
 public class UserNotifications {
     private final MailServer mailServer;

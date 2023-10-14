@@ -1,4 +1,4 @@
-package com.andy.examples;
+package com.andy.examples.greeting;
 
 import java.util.Objects;
 
