@@ -8,7 +8,7 @@ public class Game {
     private boolean isGameOver;
     private int attemptNumber;
 
-    private Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
+    public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
         this.player = player;
         this.targetWord = targetWord;
         this.attemptNumber = attemptNumber;

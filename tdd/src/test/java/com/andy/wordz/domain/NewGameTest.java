@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class NewGameTest {
 
-    public static final Player PLAYER = new Player();
+    public static final Player PLAYER = new Player("Andy");
     @Mock
     private GameRepository gameRepository;
     @Mock

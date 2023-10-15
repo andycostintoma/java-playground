@@ -1,4 +1,5 @@
 package com.andy.wordz.domain;
 
-public class Player {
+public record Player(String name) {
+
 }

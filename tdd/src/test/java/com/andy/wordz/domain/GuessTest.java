@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class GuessTest {
-    private static final Player PLAYER = new Player();
+    private static final Player PLAYER = new Player("Andy");
     private static final String CORRECT_WORD = "ARISE";
     private static final String WRONG_WORD = "RXXXX";
     @Mock
