@@ -1,6 +1,7 @@
 package com.andy.wordz.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Score {
@@ -14,6 +15,14 @@ public class Score {
 
     public Letter letter(int position) {
         return results.get(position);
+    }
+
+    public boolean allCorrect() {
+        return results.stream().allMatch(Letter.CORRECT::equals);
+    }
+
+    public List<Letter> letters() {
+        return Collections.unmodifiableList(results);
     }
 
     public void assess(String attempt) {
