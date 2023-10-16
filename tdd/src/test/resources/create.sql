@@ -11,3 +11,16 @@ CREATE TABLE IF NOT EXISTS game
     attempt_number integer     NOT NULL,
     is_game_over   boolean DEFAULT FALSE
 );
+
+INSERT INTO word (word_number, word)
+VALUES (1, 'ARISE'),
+       (2, 'SHINE'),
+       (3, 'LIGHT'),
+       (4, 'SLEEP'),
+       (5, 'BEARS'),
+       (6, 'GREET'),
+       (7, 'GRATE')
+ON CONFLICT DO NOTHING;
+
+
+
