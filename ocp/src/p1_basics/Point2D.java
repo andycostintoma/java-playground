@@ -1,22 +1,21 @@
 package p1_basics;
 
-// File: Point2D.java
 public class Point2D {             // Class name
     // Class Member Declarations
-    // Static variable:                                                 (1)
+    // Static variable:
     private static final String info = "A 2D point represented by (x,y)-coordinates.";
 
-    // Instance variables:                                              (2)
+    // Instance variables:
     private int x;
     private int y;
 
-    // Constructor:                                                     (3)
+    // Constructor:
     public Point2D(int xCoord, int yCoord) {
         x = xCoord;
         y = yCoord;
     }
 
-    // Static methods:                                                  (5)
+    // Static methods:
     public static double distance(Point2D p1, Point2D p2) {
         int xDiff = p1.x - p2.x;
         int yDiff = p1.y - p2.y;
@@ -27,7 +26,7 @@ public class Point2D {             // Class name
         System.out.println(info);
     }
 
-    // Instance methods:                                                (4)
+    // Instance methods:
     public int getX() {
         return x;
     }
