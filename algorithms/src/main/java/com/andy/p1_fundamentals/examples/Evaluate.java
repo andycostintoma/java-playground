@@ -1,9 +1,11 @@
 package com.andy.p1_fundamentals.examples;
 
 
-import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_stacks_queues.Stack;
+
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
 import edu.princeton.cs.algs4.utils.StdIn;
 import edu.princeton.cs.algs4.utils.StdOut;
+
 
 /**
  * <p>Evaluates (fully parenthesized) arithmetic expressions using Dijkstra's two-stack algorithm.</p>
@@ -29,29 +31,31 @@ import edu.princeton.cs.algs4.utils.StdOut;
 
 public class Evaluate {
     public static void main(String[] args) {
-        Stack<String> ops = new Stack<>();
-        Stack<Double> vals = new Stack<>();
+        Stack<String> operators = new Stack<>();
+        Stack<Double> values = new Stack<>();
 
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();
             switch (s) {
-                case "+", "-", "/", "*", "sqrt" -> ops.push(s);
+                case "(" -> {}
+                case "+", "-", "/", "*", "sqrt" -> operators.push(s);
                 case ")" -> {
-                    String op = ops.pop();
-                    double v = vals.pop();
+                    String op = operators.pop();
+                    double v = values.pop();
                     v = switch (op) {
-                        case "+" -> vals.pop() + v;
-                        case "-" -> vals.pop() - v;
-                        case "*" -> vals.pop() * v;
-                        case "/" -> vals.pop() / v;
+                        case "+" -> values.pop() + v;
+                        case "-" -> values.pop() - v;
+                        case "*" -> values.pop() * v;
+                        case "/" -> values.pop() / v;
                         case "sqrt" -> Math.sqrt(v);
                         default -> v;
                     };
-                    vals.push(v);
+                    values.push(v);
                 }
-                default -> vals.push(Double.parseDouble(s));
+                default -> values.push(Double.parseDouble(s));
             }
         }
-        StdOut.println(vals.pop());
+        StdOut.println(values.pop());
+
     }
 }
