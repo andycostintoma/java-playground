@@ -8,9 +8,7 @@ import com.andy.wordz.domain.Score;
 public class GuessHttpResponseMapper {
     GuessHttpResponse from(GuessResult result) {
         Score score = result.score();
-
-        return new GuessHttpResponse(toEndpointResultsFormat(score),
-                result.isGameOver());
+        return new GuessHttpResponse(toEndpointResultsFormat(score), result.isGameOver());
     }
 
     private String toEndpointResultsFormat(Score score) {

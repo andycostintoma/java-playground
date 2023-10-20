@@ -17,6 +17,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
     testImplementation 'com.github.database-rider:rider-core:1.35.0'
     testImplementation 'com.github.database-rider:rider-junit5:1.35.0'
+    testImplementation 'org.hamcrest:hamcrest-core:2.2'
 
     implementation 'org.postgresql:postgresql:42.6.0'
     implementation 'org.jdbi:jdbi3-core:3.34.0'
