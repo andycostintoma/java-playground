@@ -9,13 +9,10 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.BreadthFirstPaths;
-import edu.princeton.cs.algs4.DirectedEulerianCycle;
-import edu.princeton.cs.algs4.DirectedEulerianPath;
-import edu.princeton.cs.algs4.EulerianCycle;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.GraphGenerator;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code EulerianPath} class represents a data type
@@ -71,7 +68,7 @@ public class EulerianPath {
      *
      * @param G the graph
      */
-    public EulerianPath(edu.princeton.cs.algs4.Graph G) {
+    public EulerianPath(Graph G) {
 
         // find vertex from which to start potential Eulerian path:
         // a vertex v with odd degree(v) if it exits;
@@ -166,7 +163,7 @@ public class EulerianPath {
 
 
     // returns any non-isolated vertex; -1 if no such vertex
-    private static int nonIsolatedVertex(edu.princeton.cs.algs4.Graph G) {
+    private static int nonIsolatedVertex(Graph G) {
         for (int v = 0; v < G.V(); v++)
             if (G.degree(v) > 0)
                 return v;
@@ -185,7 +182,7 @@ public class EulerianPath {
     //    - degree(v) is even for every vertex, except for possibly two
     //    - the graph is connected (ignoring isolated vertices)
     // This method is solely for unit testing.
-    private static boolean satisfiesNecessaryAndSufficientConditions(edu.princeton.cs.algs4.Graph G) {
+    private static boolean satisfiesNecessaryAndSufficientConditions(Graph G) {
         if (G.E() == 0) return true;
 
         // Condition 1: degree(v) is even except for possibly two
@@ -197,7 +194,7 @@ public class EulerianPath {
 
         // Condition 2: graph is connected, ignoring isolated vertices
         int s = nonIsolatedVertex(G);
-        edu.princeton.cs.algs4.BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
+        BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
         for (int v = 0; v < G.V(); v++)
             if (G.degree(v) > 0 && !bfs.hasPathTo(v))
                 return false;
@@ -206,7 +203,7 @@ public class EulerianPath {
     }
 
     // check that solution is correct
-    private boolean certifySolution(edu.princeton.cs.algs4.Graph G) {
+    private boolean certifySolution(Graph G) {
 
         // internal consistency check
         if (hasEulerianPath() == (path() == null)) return false;
@@ -227,7 +224,7 @@ public class EulerianPath {
     }
 
 
-    private static void unitTest(edu.princeton.cs.algs4.Graph G, String description) {
+    private static void unitTest(Graph G, String description) {
         StdOut.println(description);
         StdOut.println("-------------------------------------");
         StdOut.print(G);
@@ -259,31 +256,31 @@ public class EulerianPath {
 
 
         // Eulerian cycle
-        edu.princeton.cs.algs4.Graph G1 = edu.princeton.cs.algs4.GraphGenerator.eulerianCycle(V, E);
+        Graph G1 = GraphGenerator.eulerianCycle(V, E);
         unitTest(G1, "Eulerian cycle");
 
         // Eulerian path
-        edu.princeton.cs.algs4.Graph G2 = edu.princeton.cs.algs4.GraphGenerator.eulerianPath(V, E);
+        Graph G2 = GraphGenerator.eulerianPath(V, E);
         unitTest(G2, "Eulerian path");
 
         // add one random edge
-        edu.princeton.cs.algs4.Graph G3 = new edu.princeton.cs.algs4.Graph(G2);
+        Graph G3 = new Graph(G2);
         G3.addEdge(StdRandom.uniformInt(V), StdRandom.uniformInt(V));
         unitTest(G3, "one random edge added to Eulerian path");
 
         // self loop
-        edu.princeton.cs.algs4.Graph G4 = new edu.princeton.cs.algs4.Graph(V);
+        Graph G4 = new Graph(V);
         int v4 = StdRandom.uniformInt(V);
         G4.addEdge(v4, v4);
         unitTest(G4, "single self loop");
 
         // single edge
-        edu.princeton.cs.algs4.Graph G5 = new edu.princeton.cs.algs4.Graph(V);
+        Graph G5 = new Graph(V);
         G5.addEdge(StdRandom.uniformInt(V), StdRandom.uniformInt(V));
         unitTest(G5, "single edge");
 
         // empty graph
-        edu.princeton.cs.algs4.Graph G6 = new edu.princeton.cs.algs4.Graph(V);
+        Graph G6 = new Graph(V);
         unitTest(G6, "empty graph");
 
         // random graph

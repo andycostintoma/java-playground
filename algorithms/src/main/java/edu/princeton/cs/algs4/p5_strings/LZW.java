@@ -13,9 +13,8 @@
 
 package edu.princeton.cs.algs4.p5_strings;
 
-import edu.princeton.cs.algs4.BinaryStdIn;
-import edu.princeton.cs.algs4.BinaryStdOut;
-import edu.princeton.cs.algs4.TST;
+import edu.princeton.cs.algs4.utils.BinaryStdIn;
+import edu.princeton.cs.algs4.utils.BinaryStdOut;
 
 /**
  *  The {@code LZW} class provides static methods for compressing
@@ -51,7 +50,7 @@ public class LZW {
      */
     public static void compress() {
         String input = BinaryStdIn.readString();
-        edu.princeton.cs.algs4.TST<Integer> st = new TST<Integer>();
+        TST<Integer> st = new TST<Integer>();
 
         // since TST is not balanced, it would be better to insert in a different order
         for (int i = 0; i < R; i++)

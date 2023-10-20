@@ -9,8 +9,8 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction;
 
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdDraw;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 import java.util.Arrays;
 import java.util.Comparator;

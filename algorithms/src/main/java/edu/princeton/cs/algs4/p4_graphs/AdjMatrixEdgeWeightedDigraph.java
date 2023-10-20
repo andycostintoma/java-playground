@@ -10,9 +10,8 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.DirectedEdge;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

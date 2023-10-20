@@ -28,9 +28,8 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.SuffixArray;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code SuffixArrayX} class represents a suffix array of a string of
@@ -44,7 +43,7 @@ import edu.princeton.cs.algs4.SuffixArray;
  *  <p>
  *  This implementation uses 3-way radix quicksort to sort the array of suffixes.
  *  For a simpler (but less efficient) implementations of the same API, see
- *  {@link edu.princeton.cs.algs4.SuffixArray}.
+ *  {@link SuffixArray}.
  *  The <em>index</em> and <em>length</em> operations takes constant time
  *  in the worst case. The <em>lcp</em> operation takes time proportional to the
  *  length of the longest common prefix.
@@ -153,7 +152,7 @@ public class SuffixArrayX {
      * That is, {@code text.substring(sa.index(i))} is the <em>i</em> smallest suffix.
      * @param i an integer between 0 and <em>n</em>-1
      * @return the index into the original string of the <em>i</em>th smallest suffix
-     * @throws IllegalArgumentException unless {@code 0 <=i < n}
+     * @throws java.lang.IllegalArgumentException unless {@code 0 <=i < n}
      */
     public int index(int i) {
         if (i < 0 || i >= n) throw new IllegalArgumentException();
@@ -166,7 +165,7 @@ public class SuffixArrayX {
      * @param i an integer between 1 and <em>n</em>-1
      * @return the length of the longest common prefix of the <em>i</em>th
      * smallest suffix and the <em>i</em>-1st smallest suffix.
-     * @throws IllegalArgumentException unless {@code 1 <= i < n}
+     * @throws java.lang.IllegalArgumentException unless {@code 1 <= i < n}
      */
     public int lcp(int i) {
         if (i < 1 || i >= n) throw new IllegalArgumentException();
@@ -189,7 +188,7 @@ public class SuffixArrayX {
      * Returns the <em>i</em>th smallest suffix as a string.
      * @param i the index
      * @return the <em>i</em> smallest suffix as a string
-     * @throws IllegalArgumentException unless {@code 0 <= i < n}
+     * @throws java.lang.IllegalArgumentException unless {@code 0 <= i < n}
      */
     public String select(int i) {
         if (i < 0 || i >= n) throw new IllegalArgumentException();
@@ -239,7 +238,7 @@ public class SuffixArrayX {
     public static void main(String[] args) {
         String s = StdIn.readAll().replaceAll("\n", " ").trim();
         SuffixArrayX suffix1 = new SuffixArrayX(s);
-        edu.princeton.cs.algs4.SuffixArray suffix2 = new SuffixArray(s);
+        SuffixArray suffix2 = new SuffixArray(s);
         boolean check = true;
         for (int i = 0; check && i < s.length(); i++) {
             if (suffix1.index(i) != suffix2.index(i)) {

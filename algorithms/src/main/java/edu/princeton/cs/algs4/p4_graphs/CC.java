@@ -31,10 +31,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Edge;
-import edu.princeton.cs.algs4.EdgeWeightedGraph;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code CC} class represents a data type for
@@ -76,7 +75,7 @@ public class CC {
      *
      * @param G the undirected graph
      */
-    public CC(edu.princeton.cs.algs4.Graph G) {
+    public CC(Graph G) {
         marked = new boolean[G.V()];
         id = new int[G.V()];
         size = new int[G.V()];
@@ -93,7 +92,7 @@ public class CC {
      *
      * @param G the edge-weighted graph
      */
-    public CC(edu.princeton.cs.algs4.EdgeWeightedGraph G) {
+    public CC(EdgeWeightedGraph G) {
         marked = new boolean[G.V()];
         id = new int[G.V()];
         size = new int[G.V()];
@@ -106,7 +105,7 @@ public class CC {
     }
 
     // depth-first search for a Graph
-    private void dfs(edu.princeton.cs.algs4.Graph G, int v) {
+    private void dfs(Graph G, int v) {
         marked[v] = true;
         id[v] = count;
         size[count]++;
@@ -214,7 +213,7 @@ public class CC {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.Graph G = new Graph(in);
+        Graph G = new Graph(in);
         CC cc = new CC(G);
 
         // number of connected components

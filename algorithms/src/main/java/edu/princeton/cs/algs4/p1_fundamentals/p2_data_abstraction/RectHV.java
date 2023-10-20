@@ -9,8 +9,7 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction;
 
-import edu.princeton.cs.algs4.Point2D;
-import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.utils.StdDraw;
 
 /**
  *  The {@code RectHV} class is an immutable data type to encapsulate a

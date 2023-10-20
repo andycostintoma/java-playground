@@ -16,10 +16,8 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p4_analysis_of_algorithms;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.Stopwatch;
-import edu.princeton.cs.algs4.ThreeSum;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code DoublingTest} class provides a client for measuring
@@ -49,7 +47,7 @@ public class DoublingTest {
         for (int i = 0; i < n; i++) {
             a[i] = StdRandom.uniformInt(-MAXIMUM_INTEGER, MAXIMUM_INTEGER);
         }
-        edu.princeton.cs.algs4.Stopwatch timer = new Stopwatch();
+        Stopwatch timer = new Stopwatch();
         int ignore = ThreeSum.count(a);
         return timer.elapsedTime();
     }

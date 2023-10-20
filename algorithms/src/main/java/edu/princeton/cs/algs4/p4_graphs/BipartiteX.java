@@ -12,10 +12,10 @@
 package edu.princeton.cs.algs4.p4_graphs;
 
 
-import edu.princeton.cs.algs4.Bipartite;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.GraphGenerator;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code BipartiteX} class represents a data type for
@@ -58,7 +58,7 @@ public class BipartiteX {
      *
      * @param  G the graph
      */
-    public BipartiteX(edu.princeton.cs.algs4.Graph G) {
+    public BipartiteX(Graph G) {
         isBipartite = true;
         color  = new boolean[G.V()];
         marked = new boolean[G.V()];
@@ -72,7 +72,7 @@ public class BipartiteX {
         assert check(G);
     }
 
-    private void bfs(edu.princeton.cs.algs4.Graph G, int s) {
+    private void bfs(Graph G, int s) {
         Queue<Integer> q = new Queue<Integer>();
         color[s] = WHITE;
         marked[s] = true;
@@ -153,7 +153,7 @@ public class BipartiteX {
         return cycle;
     }
 
-    private boolean check(edu.princeton.cs.algs4.Graph G) {
+    private boolean check(Graph G) {
         // graph is bipartite
         if (isBipartite) {
             for (int v = 0; v < G.V(); v++) {

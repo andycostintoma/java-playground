@@ -33,8 +33,10 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.EdgeWeightedDigraph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code DepthFirstOrder} class represents a data type for
@@ -68,7 +70,7 @@ public class DepthFirstOrder {
      * Determines a depth-first order for the digraph {@code G}.
      * @param G the digraph
      */
-    public DepthFirstOrder(edu.princeton.cs.algs4.p4_graphs.Digraph G) {
+    public DepthFirstOrder(Digraph G) {
         pre    = new int[G.V()];
         post   = new int[G.V()];
         postorder = new Queue<Integer>();
@@ -84,7 +86,7 @@ public class DepthFirstOrder {
      * Determines a depth-first order for the edge-weighted digraph {@code G}.
      * @param G the edge-weighted digraph
      */
-    public DepthFirstOrder(edu.princeton.cs.algs4.EdgeWeightedDigraph G) {
+    public DepthFirstOrder(EdgeWeightedDigraph G) {
         pre    = new int[G.V()];
         post   = new int[G.V()];
         postorder = new Queue<Integer>();
@@ -95,7 +97,7 @@ public class DepthFirstOrder {
     }
 
     // run DFS in digraph G from vertex v and compute preorder/postorder
-    private void dfs(edu.princeton.cs.algs4.p4_graphs.Digraph G, int v) {
+    private void dfs(Digraph G, int v) {
         marked[v] = true;
         pre[v] = preCounter++;
         preorder.enqueue(v);
@@ -213,7 +215,7 @@ public class DepthFirstOrder {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.p4_graphs.Digraph G = new Digraph(in);
+        Digraph G = new Digraph(in);
 
         DepthFirstOrder dfs = new DepthFirstOrder(G);
         StdOut.println("   v  pre post");

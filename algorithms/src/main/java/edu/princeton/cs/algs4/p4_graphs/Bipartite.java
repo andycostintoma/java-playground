@@ -14,9 +14,9 @@
 package edu.princeton.cs.algs4.p4_graphs;
 
 
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.GraphGenerator;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code Bipartite} class represents a data type for
@@ -56,7 +56,7 @@ public class Bipartite {
      *
      * @param  G the graph
      */
-    public Bipartite(edu.princeton.cs.algs4.Graph G) {
+    public Bipartite(Graph G) {
         isBipartite = true;
         color  = new boolean[G.V()];
         marked = new boolean[G.V()];
@@ -70,7 +70,7 @@ public class Bipartite {
         assert check(G);
     }
 
-    private void dfs(edu.princeton.cs.algs4.Graph G, int v) {
+    private void dfs(Graph G, int v) {
         marked[v] = true;
         for (int w : G.adj(v)) {
 
@@ -136,7 +136,7 @@ public class Bipartite {
         return cycle;
     }
 
-    private boolean check(edu.princeton.cs.algs4.Graph G) {
+    private boolean check(Graph G) {
         // graph is bipartite
         if (isBipartite) {
             for (int v = 0; v < G.V(); v++) {

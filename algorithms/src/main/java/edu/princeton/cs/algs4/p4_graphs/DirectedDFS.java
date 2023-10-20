@@ -23,9 +23,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
-import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Bag;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code DirectedDFS} class represents a data type for

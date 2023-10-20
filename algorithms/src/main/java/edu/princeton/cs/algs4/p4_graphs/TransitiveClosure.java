@@ -32,10 +32,8 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.DirectedDFS;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code TransitiveClosure} class represents a data type for
@@ -61,14 +59,14 @@ import edu.princeton.cs.algs4.StdOut;
  *  @author Kevin Wayne
  */
 public class TransitiveClosure {
-    private edu.princeton.cs.algs4.DirectedDFS[] tc;  // tc[v] = reachable from v
+    private DirectedDFS[] tc;  // tc[v] = reachable from v
 
     /**
      * Computes the transitive closure of the digraph {@code G}.
      * @param G the digraph
      */
-    public TransitiveClosure(edu.princeton.cs.algs4.Digraph G) {
-        tc = new edu.princeton.cs.algs4.DirectedDFS[G.V()];
+    public TransitiveClosure(Digraph G) {
+        tc = new DirectedDFS[G.V()];
         for (int v = 0; v < G.V(); v++)
             tc[v] = new DirectedDFS(G, v);
     }
@@ -102,7 +100,7 @@ public class TransitiveClosure {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.Digraph G = new Digraph(in);
+        Digraph G = new Digraph(in);
 
         TransitiveClosure tc = new TransitiveClosure(G);
 

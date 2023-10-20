@@ -43,11 +43,11 @@
  *
  ******************************************************************************/
 
-package edu.princeton.cs.algs4.p1_fundamentals.p1_basic_programming_model;
+package edu.princeton.cs.algs4.p1_fundamentals.p1_programming_model;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code Knuth} class provides a client for reading in a

@@ -22,9 +22,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code AcyclicLP} class represents a data type for solving the

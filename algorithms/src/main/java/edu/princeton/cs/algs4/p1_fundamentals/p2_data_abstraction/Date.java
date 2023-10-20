@@ -9,7 +9,7 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction;
 
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Date} class is an immutable data type to encapsulate a

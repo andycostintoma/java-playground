@@ -24,9 +24,8 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.BellmanFordSP;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Arbitrage} class provides a client that finds an arbitrage
@@ -83,7 +82,7 @@ public class Arbitrage {
         }
 
         // find negative cycle
-        edu.princeton.cs.algs4.BellmanFordSP spt = new BellmanFordSP(G, 0);
+        BellmanFordSP spt = new BellmanFordSP(G, 0);
         if (spt.hasNegativeCycle()) {
             double stake = 1000.0;
             for (DirectedEdge e : spt.negativeCycle()) {

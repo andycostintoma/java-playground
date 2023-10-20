@@ -8,8 +8,6 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.Draw;
-
 /**
  *  <i>DrawListener</i>. This interface provides a basic capability for
  *  responding to keyboard in mouse events from {@link Draw} via callbacks.

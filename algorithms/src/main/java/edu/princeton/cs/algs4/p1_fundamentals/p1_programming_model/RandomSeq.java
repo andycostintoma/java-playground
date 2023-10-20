@@ -1,38 +1,27 @@
 /******************************************************************************
- *  Compilation:  javac Cat.java
- *  Execution:    java Cat input0.txt input1.txt ... output.txt
- *  Dependencies: In.java Out.java
- *  Data files:   https://algs4.cs.princeton.edu/11model/in1.txt
- *                https://algs4.cs.princeton.edu/11model/in2.txt
+ *  Compilation:  javac RandomSeq.java
+ *  Execution:    java RandomSeq n lo hi
+ *  Dependencies: StdOut.java
  *
- *  Reads in text files specified as the first command-line
- *  arguments, concatenates them, and writes the result to
- *  filename specified as the last command-line arguments.
+ *  Prints N numbers between lo and hi.
  *
- *  % more in1.txt
- *  This is
- *
- *  % more in2.txt
- *  a tiny
- *  test.
- *
- *  % java Cat in1.txt in2.txt out.txt
- *
- *  % more out.txt
- *  This is
- *  a tiny
- *  test.
+ *  % java RandomSeq 5 100.0 200.0
+ *  123.43
+ *  153.13
+ *  144.38
+ *  155.18
+ *  104.02
  *
  ******************************************************************************/
 
-package edu.princeton.cs.algs4.p1_fundamentals.p1_basic_programming_model;
+package edu.princeton.cs.algs4.p1_fundamentals.p1_programming_model;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Out;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
- *  The {@code Cat} class provides a client for concatenating the results
- *  of several text files.
+ *  The {@code RandomSeq} class is a client that prints out a pseudorandom
+ *  sequence of real numbers in a given range.
  *  <p>
  *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/11model">Section 1.1</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
@@ -40,29 +29,47 @@ import edu.princeton.cs.algs4.Out;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Cat {
+public class RandomSeq {
 
     // this class should not be instantiated
-    private Cat() { }
+    private RandomSeq() { }
+
 
     /**
-     * Reads in a sequence of text files specified as the first command-line
-     * arguments, concatenates them, and writes the results to the file
-     * specified as the last command-line argument.
+     * Reads in two command-line arguments lo and hi and prints n uniformly
+     * random real numbers in [lo, hi) to standard output.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        Out out = new Out(args[args.length - 1]);
-        for (int i = 0; i < args.length - 1; i++) {
-            In in = new In(args[i]);
-            String s = in.readAll();
-            out.println(s);
-            in.close();
-        }
-        out.close();
-    }
 
+        // command-line arguments
+        int n = Integer.parseInt(args[0]);
+
+        // for backward compatibility with Intro to Programming in Java version of RandomSeq
+        if (args.length == 1) {
+            // generate and print n numbers between 0.0 and 1.0
+            for (int i = 0; i < n; i++) {
+                double x = StdRandom.uniformDouble(0.0, 1.0);
+                StdOut.println(x);
+            }
+        }
+
+        else if (args.length == 3) {
+            double lo = Double.parseDouble(args[1]);
+            double hi = Double.parseDouble(args[2]);
+
+            // generate and print n numbers between lo and hi
+            for (int i = 0; i < n; i++) {
+                double x = StdRandom.uniformDouble(lo, hi);
+                StdOut.printf("%.2f\n", x);
+            }
+        }
+
+        else {
+            throw new IllegalArgumentException("Invalid number of arguments");
+        }
+    }
 }
 
 /******************************************************************************

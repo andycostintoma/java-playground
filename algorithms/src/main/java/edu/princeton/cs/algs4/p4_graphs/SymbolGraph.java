@@ -43,20 +43,22 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p3_searching.ST;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code SymbolGraph} class represents an undirected graph, where the
  *  vertex names are arbitrary strings.
  *  By providing mappings between string vertex names and integers,
  *  it serves as a wrapper around the
- *  {@link edu.princeton.cs.algs4.Graph} data type, which assumes the vertex names are integers
+ *  {@link Graph} data type, which assumes the vertex names are integers
  *  between 0 and <em>V</em> - 1.
  *  It also supports initializing a symbol graph from a file.
  *  <p>
  *  This implementation uses an {@link ST} to map from strings to integers,
- *  an array to map from integers to strings, and a {@link edu.princeton.cs.algs4.Graph} to store
+ *  an array to map from integers to strings, and a {@link Graph} to store
  *  the underlying graph.
  *  The <em>indexOf</em> and <em>contains</em> operations take time
  *  proportional to log <em>V</em>, where <em>V</em> is the number of vertices.
@@ -71,7 +73,7 @@ import edu.princeton.cs.algs4.*;
 public class SymbolGraph {
     private ST<String, Integer> st;  // string -> index
     private String[] keys;           // index  -> string
-    private edu.princeton.cs.algs4.Graph graph;             // the underlying graph
+    private Graph graph;             // the underlying graph
 
     /**
      * Initializes a graph from a file using the specified delimiter.
@@ -104,7 +106,7 @@ public class SymbolGraph {
 
         // second pass builds the graph by connecting first vertex on each
         // line to all others
-        graph = new edu.princeton.cs.algs4.Graph(st.size());
+        graph = new Graph(st.size());
         in = new In(filename);
         while (in.hasNextLine()) {
             String[] a = in.readLine().split(delimiter);
@@ -177,7 +179,7 @@ public class SymbolGraph {
      * @deprecated Replaced by {@link #graph()}.
      */
     @Deprecated
-    public edu.princeton.cs.algs4.Graph G() {
+    public Graph G() {
         return graph;
     }
 
@@ -186,7 +188,7 @@ public class SymbolGraph {
      * not to mutate the graph.
      * @return the graph associated with the symbol graph
      */
-    public edu.princeton.cs.algs4.Graph graph() {
+    public Graph graph() {
         return graph;
     }
 

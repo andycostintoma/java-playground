@@ -20,8 +20,8 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code Counter} class is a mutable data type to encapsulate a counter.

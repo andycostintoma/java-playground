@@ -10,7 +10,11 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p4_graphs.DijkstraSP;
+import edu.princeton.cs.algs4.p4_graphs.DirectedEdge;
+import edu.princeton.cs.algs4.p4_graphs.EdgeWeightedDigraph;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code AssignmentProblem} class represents a data type for computing

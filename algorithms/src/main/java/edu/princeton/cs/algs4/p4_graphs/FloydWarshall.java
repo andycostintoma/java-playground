@@ -17,10 +17,9 @@
 package edu.princeton.cs.algs4.p4_graphs;
 
 
-import edu.princeton.cs.algs4.AdjMatrixEdgeWeightedDigraph;
-import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code FloydWarshall} class represents a data type for solving the
@@ -63,7 +62,7 @@ public class FloydWarshall {
      * some pair of vertices, it computes a negative cycle.
      * @param G the edge-weighted digraph
      */
-    public FloydWarshall(edu.princeton.cs.algs4.AdjMatrixEdgeWeightedDigraph G) {
+    public FloydWarshall(AdjMatrixEdgeWeightedDigraph G) {
         int V = G.V();
         distTo = new double[V][V];
         edgeTo = new DirectedEdge[V][V];
@@ -194,7 +193,7 @@ public class FloydWarshall {
     }
 
     // check optimality conditions
-    private boolean check(edu.princeton.cs.algs4.AdjMatrixEdgeWeightedDigraph G) {
+    private boolean check(AdjMatrixEdgeWeightedDigraph G) {
 
         // no negative cycle
         if (!hasNegativeCycle()) {
@@ -230,7 +229,7 @@ public class FloydWarshall {
         // random graph with V vertices and E edges, parallel edges allowed
         int V = Integer.parseInt(args[0]);
         int E = Integer.parseInt(args[1]);
-        edu.princeton.cs.algs4.AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(V);
+        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(V);
         for (int i = 0; i < E; i++) {
             int v = StdRandom.uniformInt(V);
             int w = StdRandom.uniformInt(V);

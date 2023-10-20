@@ -17,9 +17,9 @@
 
 package edu.princeton.cs.algs4.p5_strings;
 
-import edu.princeton.cs.algs4.Alphabet;
-import edu.princeton.cs.algs4.BinaryStdIn;
-import edu.princeton.cs.algs4.BinaryStdOut;
+import edu.princeton.cs.algs4.p5_strings.Alphabet;
+import edu.princeton.cs.algs4.utils.BinaryStdIn;
+import edu.princeton.cs.algs4.utils.BinaryStdOut;
 
 /**
  *  The {@code Genome} class provides static methods for compressing

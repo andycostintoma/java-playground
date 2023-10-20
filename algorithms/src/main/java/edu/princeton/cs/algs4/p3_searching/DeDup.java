@@ -32,9 +32,8 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.SET;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code DeDup} class provides a client for reading in a sequence of

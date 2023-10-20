@@ -18,12 +18,11 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.MinPQ;
-import edu.princeton.cs.algs4.Particle;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.utils.StdDraw;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.p2_sorting.MinPQ;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  *  The {@code CollisionSystem} class represents a collection of particles

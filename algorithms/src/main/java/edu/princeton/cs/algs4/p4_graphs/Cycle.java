@@ -22,10 +22,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Cycle} class represents a data type for
@@ -62,7 +61,7 @@ public class Cycle {
      *
      * @param G the undirected graph
      */
-    public Cycle(edu.princeton.cs.algs4.Graph G) {
+    public Cycle(Graph G) {
         // need special case to identify parallel edge as a cycle
         if (hasParallelEdges(G)) return;
 
@@ -79,7 +78,7 @@ public class Cycle {
 
     // does this graph have a self loop?
     // side effect: initialize cycle to be self loop
-    private boolean hasSelfLoop(edu.princeton.cs.algs4.Graph G) {
+    private boolean hasSelfLoop(Graph G) {
         for (int v = 0; v < G.V(); v++) {
             for (int w : G.adj(v)) {
                 if (v == w) {
@@ -95,7 +94,7 @@ public class Cycle {
 
     // does this graph have two parallel edges?
     // side effect: initialize cycle to be two parallel edges
-    private boolean hasParallelEdges(edu.princeton.cs.algs4.Graph G) {
+    private boolean hasParallelEdges(Graph G) {
         marked = new boolean[G.V()];
 
         for (int v = 0; v < G.V(); v++) {
@@ -138,7 +137,7 @@ public class Cycle {
         return cycle;
     }
 
-    private void dfs(edu.princeton.cs.algs4.Graph G, int u, int v) {
+    private void dfs(Graph G, int u, int v) {
         marked[v] = true;
         for (int w : G.adj(v)) {
 
@@ -169,7 +168,7 @@ public class Cycle {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.Graph G = new Graph(in);
+        Graph G = new Graph(in);
         Cycle finder = new Cycle(G);
         if (finder.hasCycle()) {
             for (int v : finder.cycle()) {

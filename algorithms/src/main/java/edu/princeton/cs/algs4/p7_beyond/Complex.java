@@ -30,7 +30,7 @@
 
 package edu.princeton.cs.algs4.p7_beyond;
 
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Complex} class represents a complex number.

@@ -12,8 +12,6 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.BinaryStdOut;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -294,7 +292,7 @@ public final class BinaryStdIn {
         // read one 8-bit char at a time
         while (!BinaryStdIn.isEmpty()) {
             char c = BinaryStdIn.readChar();
-            edu.princeton.cs.algs4.BinaryStdOut.write(c);
+            BinaryStdOut.write(c);
         }
         BinaryStdOut.flush();
     }

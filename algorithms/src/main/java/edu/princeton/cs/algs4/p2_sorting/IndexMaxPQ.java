@@ -9,8 +9,8 @@
 
 package edu.princeton.cs.algs4.p2_sorting;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

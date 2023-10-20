@@ -37,8 +37,10 @@
 package edu.princeton.cs.algs4.p4_graphs;
 
 
-import edu.princeton.cs.algs4.DijkstraSP;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.p2_sorting.IndexMinPQ;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code DijkstraUndirectedSP} class represents a data type for solving
@@ -72,7 +74,7 @@ import edu.princeton.cs.algs4.*;
  */
 public class DijkstraUndirectedSP {
     private double[] distTo;          // distTo[v] = distance  of shortest s->v path
-    private edu.princeton.cs.algs4.p4_graphs.Edge[] edgeTo;            // edgeTo[v] = last edge on shortest s->v path
+    private Edge[] edgeTo;            // edgeTo[v] = last edge on shortest s->v path
     private IndexMinPQ<Double> pq;    // priority queue of vertices
 
     /**
@@ -84,14 +86,14 @@ public class DijkstraUndirectedSP {
      * @throws IllegalArgumentException if an edge weight is negative
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public DijkstraUndirectedSP(edu.princeton.cs.algs4.p4_graphs.EdgeWeightedGraph G, int s) {
-        for (edu.princeton.cs.algs4.p4_graphs.Edge e : G.edges()) {
+    public DijkstraUndirectedSP(EdgeWeightedGraph G, int s) {
+        for (Edge e : G.edges()) {
             if (e.weight() < 0)
                 throw new IllegalArgumentException("edge " + e + " has negative weight");
         }
 
         distTo = new double[G.V()];
-        edgeTo = new edu.princeton.cs.algs4.p4_graphs.Edge[G.V()];
+        edgeTo = new Edge[G.V()];
 
         validateVertex(s);
 
@@ -104,7 +106,7 @@ public class DijkstraUndirectedSP {
         pq.insert(s, distTo[s]);
         while (!pq.isEmpty()) {
             int v = pq.delMin();
-            for (edu.princeton.cs.algs4.p4_graphs.Edge e : G.adj(v))
+            for (Edge e : G.adj(v))
                 relax(e, v);
         }
 
@@ -113,7 +115,7 @@ public class DijkstraUndirectedSP {
     }
 
     // relax edge e and update pq if changed
-    private void relax(edu.princeton.cs.algs4.p4_graphs.Edge e, int v) {
+    private void relax(Edge e, int v) {
         int w = e.other(v);
         if (distTo[w] > distTo[v] + e.weight()) {
             distTo[w] = distTo[v] + e.weight();
@@ -159,12 +161,12 @@ public class DijkstraUndirectedSP {
      *         {@code null} if no such path
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
-    public Iterable<edu.princeton.cs.algs4.p4_graphs.Edge> pathTo(int v) {
+    public Iterable<Edge> pathTo(int v) {
         validateVertex(v);
         if (!hasPathTo(v)) return null;
-        Stack<edu.princeton.cs.algs4.p4_graphs.Edge> path = new Stack<edu.princeton.cs.algs4.p4_graphs.Edge>();
+        Stack<Edge> path = new Stack<Edge>();
         int x = v;
-        for (edu.princeton.cs.algs4.p4_graphs.Edge e = edgeTo[v]; e != null; e = edgeTo[x]) {
+        for (Edge e = edgeTo[v]; e != null; e = edgeTo[x]) {
             path.push(e);
             x = e.other(x);
         }
@@ -175,10 +177,10 @@ public class DijkstraUndirectedSP {
     // check optimality conditions:
     // (i) for all edges e = v-w:            distTo[w] <= distTo[v] + e.weight()
     // (ii) for all edge e = v-w on the SPT: distTo[w] == distTo[v] + e.weight()
-    private boolean check(edu.princeton.cs.algs4.p4_graphs.EdgeWeightedGraph G, int s) {
+    private boolean check(EdgeWeightedGraph G, int s) {
 
         // check that edge weights are non-negative
-        for (edu.princeton.cs.algs4.p4_graphs.Edge e : G.edges()) {
+        for (Edge e : G.edges()) {
             if (e.weight() < 0) {
                 System.err.println("negative edge weight detected");
                 return false;
@@ -200,7 +202,7 @@ public class DijkstraUndirectedSP {
 
         // check that all edges e = v-w satisfy distTo[w] <= distTo[v] + e.weight()
         for (int v = 0; v < G.V(); v++) {
-            for (edu.princeton.cs.algs4.p4_graphs.Edge e : G.adj(v)) {
+            for (Edge e : G.adj(v)) {
                 int w = e.other(v);
                 if (distTo[v] + e.weight() < distTo[w]) {
                     System.err.println("edge " + e + " not relaxed");
@@ -212,7 +214,7 @@ public class DijkstraUndirectedSP {
         // check that all edges e = v-w on SPT satisfy distTo[w] == distTo[v] + e.weight()
         for (int w = 0; w < G.V(); w++) {
             if (edgeTo[w] == null) continue;
-            edu.princeton.cs.algs4.p4_graphs.Edge e = edgeTo[w];
+            Edge e = edgeTo[w];
             if (w != e.either() && w != e.other(e.either())) return false;
             int v = e.other(w);
             if (distTo[v] + e.weight() != distTo[w]) {
@@ -237,7 +239,7 @@ public class DijkstraUndirectedSP {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.p4_graphs.EdgeWeightedGraph G = new EdgeWeightedGraph(in);
+        EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         int s = Integer.parseInt(args[1]);
 
         // compute shortest paths

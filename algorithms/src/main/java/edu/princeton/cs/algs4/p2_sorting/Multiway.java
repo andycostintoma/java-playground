@@ -25,9 +25,8 @@
 
 package edu.princeton.cs.algs4.p2_sorting;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.IndexMinPQ;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Multiway} class provides a client for reading in several

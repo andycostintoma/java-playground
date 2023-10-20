@@ -21,9 +21,12 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.FlowEdge;
-import edu.princeton.cs.algs4.FlowNetwork;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p4_graphs.Edge;
+import edu.princeton.cs.algs4.p4_graphs.EdgeWeightedGraph;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p5_union_find.UF;
+import edu.princeton.cs.algs4.p2_sorting.IndexMaxPQ;
 
 /**
  *  The {@code GlobalMincut} class represents a data type for computing a
@@ -251,10 +254,10 @@ public class GlobalMincut {
         // so it suffices to try all pairs s-v for some fixed s
         double value = Double.POSITIVE_INFINITY;
         for (int s = 0, t = 1; t < G.V(); t++) {
-            edu.princeton.cs.algs4.FlowNetwork F = new FlowNetwork(G.V());
+            FlowNetwork F = new FlowNetwork(G.V());
             for (Edge e : G.edges()) {
                 int v = e.either(), w = e.other(v);
-                F.addEdge(new edu.princeton.cs.algs4.FlowEdge(v, w, e.weight()));
+                F.addEdge(new FlowEdge(v, w, e.weight()));
                 F.addEdge(new FlowEdge(w, v, e.weight()));
             }
             FordFulkerson maxflow = new FordFulkerson(F, s, t);

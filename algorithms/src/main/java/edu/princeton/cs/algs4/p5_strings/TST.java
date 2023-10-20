@@ -38,9 +38,9 @@
 
 package edu.princeton.cs.algs4.p5_strings;
 
-import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
 
 /**
  *  The {@code TST} class represents a symbol table of key-value

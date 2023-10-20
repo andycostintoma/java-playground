@@ -15,7 +15,7 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

@@ -18,20 +18,22 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p3_searching.ST;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code SymbolDigraph} class represents a digraph, where the
  *  vertex names are arbitrary strings.
  *  By providing mappings between string vertex names and integers,
  *  it serves as a wrapper around the
- *  {@link edu.princeton.cs.algs4.Digraph} data type, which assumes the vertex names are integers
+ *  {@link Digraph} data type, which assumes the vertex names are integers
  *  between 0 and <em>V</em> - 1.
  *  It also supports initializing a symbol digraph from a file.
  *  <p>
  *  This implementation uses an {@link ST} to map from strings to integers,
- *  an array to map from integers to strings, and a {@link edu.princeton.cs.algs4.Digraph} to store
+ *  an array to map from integers to strings, and a {@link Digraph} to store
  *  the underlying graph.
  *  The <em>indexOf</em> and <em>contains</em> operations take time
  *  proportional to log <em>V</em>, where <em>V</em> is the number of vertices.
@@ -46,7 +48,7 @@ import edu.princeton.cs.algs4.*;
 public class SymbolDigraph {
     private ST<String, Integer> st;  // string -> index
     private String[] keys;           // index  -> string
-    private edu.princeton.cs.algs4.Digraph graph;           // the underlying digraph
+    private Digraph graph;           // the underlying digraph
 
     /**
      * Initializes a digraph from a file using the specified delimiter.
@@ -78,7 +80,7 @@ public class SymbolDigraph {
 
         // second pass builds the digraph by connecting first vertex on each
         // line to all others
-        graph = new edu.princeton.cs.algs4.Digraph(st.size());
+        graph = new Digraph(st.size());
         in = new In(filename);
         while (in.hasNextLine()) {
             String[] a = in.readLine().split(delimiter);
@@ -151,7 +153,7 @@ public class SymbolDigraph {
      * @deprecated Replaced by {@link #digraph()}.
      */
     @Deprecated
-    public edu.princeton.cs.algs4.Digraph G() {
+    public Digraph G() {
         return graph;
     }
 
@@ -161,7 +163,7 @@ public class SymbolDigraph {
      *
      * @return the digraph associated with the symbol digraph
      */
-    public edu.princeton.cs.algs4.Digraph digraph() {
+    public Digraph digraph() {
         return graph;
     }
 

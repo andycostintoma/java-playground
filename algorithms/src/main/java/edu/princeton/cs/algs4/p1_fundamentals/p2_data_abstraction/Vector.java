@@ -26,7 +26,7 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction;
 
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Vector} class represents a <em>d</em>-dimensional Euclidean vector.

@@ -1,27 +1,29 @@
 /******************************************************************************
- *  Compilation:  javac RandomSeq.java
- *  Execution:    java RandomSeq n lo hi
- *  Dependencies: StdOut.java
+ *  Compilation:  javac Average.java
+ *  Execution:    java Average < data.txt
+ *  Dependencies: StdIn.java StdOut.java
  *
- *  Prints N numbers between lo and hi.
+ *  Reads in a sequence of real numbers, and computes their average.
  *
- *  % java RandomSeq 5 100.0 200.0
- *  123.43
- *  153.13
- *  144.38
- *  155.18
- *  104.02
+ *  % java Average
+ *  10.0 5.0 6.0
+ *  3.0 7.0 32.0
+ *  [Ctrl-d]
+ *  Average is 10.5
+ *
+ *  Note [Ctrl-d] signifies the end of file on Unix.
+ *  On windows use [Ctrl-z].
  *
  ******************************************************************************/
 
-package edu.princeton.cs.algs4.p1_fundamentals.p1_basic_programming_model;
+package edu.princeton.cs.algs4.p1_fundamentals.p1_programming_model;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
- *  The {@code RandomSeq} class is a client that prints out a pseudorandom
- *  sequence of real numbers in a given range.
+ *  The {@code Average} class provides a client for reading in a sequence
+ *  of real numbers and printing out their average.
  *  <p>
  *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/11model">Section 1.1</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
@@ -29,46 +31,33 @@ import edu.princeton.cs.algs4.StdRandom;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class RandomSeq {
+public class Average {
 
     // this class should not be instantiated
-    private RandomSeq() { }
-
+    private Average() { }
 
     /**
-     * Reads in two command-line arguments lo and hi and prints n uniformly
-     * random real numbers in [lo, hi) to standard output.
+     * Reads in a sequence of real numbers from standard input and prints
+     * out their average to standard output.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
+        int count = 0;       // number input values
+        double sum = 0.0;    // sum of input values
 
-        // command-line arguments
-        int n = Integer.parseInt(args[0]);
-
-        // for backward compatibility with Intro to Programming in Java version of RandomSeq
-        if (args.length == 1) {
-            // generate and print n numbers between 0.0 and 1.0
-            for (int i = 0; i < n; i++) {
-                double x = StdRandom.uniformDouble(0.0, 1.0);
-                StdOut.println(x);
-            }
+        // read data and compute statistics
+        while (!StdIn.isEmpty()) {
+            double value = StdIn.readDouble();
+            sum += value;
+            count++;
         }
 
-        else if (args.length == 3) {
-            double lo = Double.parseDouble(args[1]);
-            double hi = Double.parseDouble(args[2]);
+        // compute the average
+        double average = sum / count;
 
-            // generate and print n numbers between lo and hi
-            for (int i = 0; i < n; i++) {
-                double x = StdRandom.uniformDouble(lo, hi);
-                StdOut.printf("%.2f\n", x);
-            }
-        }
-
-        else {
-            throw new IllegalArgumentException("Invalid number of arguments");
-        }
+        // print results
+        StdOut.println("Average is " + average);
     }
 }
 

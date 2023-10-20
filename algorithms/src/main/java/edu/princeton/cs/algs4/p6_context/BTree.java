@@ -15,7 +15,7 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code BTree} class represents an ordered symbol table of generic

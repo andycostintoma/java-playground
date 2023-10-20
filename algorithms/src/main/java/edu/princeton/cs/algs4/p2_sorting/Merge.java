@@ -23,9 +23,8 @@
 
 package edu.princeton.cs.algs4.p2_sorting;
 
-import edu.princeton.cs.algs4.MergeX;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Merge} class provides static methods for sorting an

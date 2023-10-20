@@ -32,10 +32,9 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code LookupCSV} class provides a data-driven client for reading in a

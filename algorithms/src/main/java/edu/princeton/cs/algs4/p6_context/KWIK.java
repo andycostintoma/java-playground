@@ -37,13 +37,12 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.SuffixArray;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
- *  The {@code KWIK} class provides a {@link edu.princeton.cs.algs4.SuffixArray} client for computing
+ *  The {@code KWIK} class provides a {@link SuffixArray} client for computing
  *  all occurrences of a keyword in a given string, with surrounding context.
  *  This is known as <em>keyword-in-context search</em>.
  *  <p>
@@ -78,7 +77,7 @@ public class KWIK {
         int n = text.length();
 
         // build suffix array
-        edu.princeton.cs.algs4.SuffixArray sa = new SuffixArray(text);
+        SuffixArray sa = new SuffixArray(text);
 
         // find all occurrences of queries and give context
         while (StdIn.hasNextLine()) {

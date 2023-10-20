@@ -25,21 +25,57 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.DrawListener;
-import edu.princeton.cs.algs4.StdDraw;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.FileDialog;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import java.awt.geom.Arc2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Timer;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.TreeSet;
+
+import javax.imageio.ImageIO;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 /**
  *  <i>Draw</i>. This class provides a basic capability for
@@ -215,7 +251,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     private final TreeSet<Integer> keysDown = new TreeSet<Integer>();
 
     // event-based listeners
-    private final ArrayList<edu.princeton.cs.algs4.DrawListener> listeners = new ArrayList<edu.princeton.cs.algs4.DrawListener>();
+    private final ArrayList<DrawListener> listeners = new ArrayList<DrawListener>();
 
     // timer
     private Timer timer;
@@ -1006,7 +1042,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
 
         // in case file is inside a .jar (classpath relative to StdDraw)
         if (icon.getImageLoadStatus() != MediaTracker.COMPLETE) {
-            URL url = edu.princeton.cs.algs4.StdDraw.class.getResource(filename);
+            URL url = StdDraw.class.getResource(filename);
             if (url != null)
                 icon = new ImageIcon(url);
         }
@@ -1382,11 +1418,11 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     ***************************************************************************/
 
     /**
-     * Adds a {@link edu.princeton.cs.algs4.DrawListener} to listen to keyboard and mouse events.
+     * Adds a {@link DrawListener} to listen to keyboard and mouse events.
      *
      * @param listener the {\tt DrawListener} argument
      */
-    public void addListener(edu.princeton.cs.algs4.DrawListener listener) {
+    public void addListener(DrawListener listener) {
         // ensure there is a window for listening to events
         show();
         listeners.add(listener);
@@ -1475,7 +1511,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
             isMousePressed = true;
         }
         if (e.getButton() == MouseEvent.BUTTON1) {
-            for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+            for (DrawListener listener : listeners)
                 listener.mousePressed(userX(e.getX()), userY(e.getY()));
         }
 
@@ -1490,7 +1526,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
             isMousePressed = false;
         }
         if (e.getButton() == MouseEvent.BUTTON1) {
-            for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+            for (DrawListener listener : listeners)
                 listener.mouseReleased(userX(e.getX()), userY(e.getY()));
         }
     }
@@ -1501,7 +1537,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+            for (DrawListener listener : listeners)
                 listener.mouseClicked(userX(e.getX()), userY(e.getY()));
         }
     }
@@ -1517,7 +1553,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
             mouseY = userY(e.getY());
         }
         // doesn't seem to work if a button is specified
-        for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+        for (DrawListener listener : listeners)
             listener.mouseDragged(userX(e.getX()), userY(e.getY()));
     }
 
@@ -1587,7 +1623,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         }
 
         // notify all listeners
-        for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+        for (DrawListener listener : listeners)
             listener.keyTyped(e.getKeyChar());
     }
 
@@ -1601,7 +1637,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         }
 
         // notify all listeners
-        for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+        for (DrawListener listener : listeners)
             listener.keyPressed(e.getKeyCode());
     }
 
@@ -1615,7 +1651,7 @@ public final class Draw implements ActionListener, MouseListener, MouseMotionLis
         }
 
         // notify all listeners
-        for (edu.princeton.cs.algs4.DrawListener listener : listeners)
+        for (DrawListener listener : listeners)
             listener.keyReleased(e.getKeyCode());
     }
 

@@ -28,8 +28,7 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.DirectedCycleX;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Topological} class represents a data type for

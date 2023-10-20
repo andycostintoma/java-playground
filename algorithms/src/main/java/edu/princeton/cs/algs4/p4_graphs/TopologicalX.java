@@ -10,11 +10,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.DirectedCycle;
-import edu.princeton.cs.algs4.DirectedCycleX;
-import edu.princeton.cs.algs4.EdgeWeightedDigraph;
-import edu.princeton.cs.algs4.Topological;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code TopologicalX} class represents a data type for
@@ -93,7 +91,7 @@ public class TopologicalX {
      * topological order and, if so, finds such a topological order.
      * @param G the digraph
      */
-    public TopologicalX(edu.princeton.cs.algs4.EdgeWeightedDigraph G) {
+    public TopologicalX(EdgeWeightedDigraph G) {
 
         // indegrees of remaining vertices
         int[] indegree = new int[G.V()];
@@ -209,7 +207,7 @@ public class TopologicalX {
     }
 
     // certify that digraph is acyclic
-    private boolean check(edu.princeton.cs.algs4.EdgeWeightedDigraph G) {
+    private boolean check(EdgeWeightedDigraph G) {
 
         // digraph is acyclic
         if (hasOrder()) {
@@ -274,7 +272,7 @@ public class TopologicalX {
         Digraph G1 = DigraphGenerator.dag(V, E);
 
         // corresponding edge-weighted digraph
-        edu.princeton.cs.algs4.EdgeWeightedDigraph G2 = new EdgeWeightedDigraph(V);
+        EdgeWeightedDigraph G2 = new EdgeWeightedDigraph(V);
         for (int v = 0; v < G1.V(); v++)
             for (int w : G1.adj(v))
                 G2.addEdge(new DirectedEdge(v, w, 0.0));

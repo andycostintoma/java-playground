@@ -30,10 +30,9 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.SET;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code BlockFilter} class provides a client for reading in a <em>blocklist</em>
@@ -54,7 +53,7 @@ public class BlockFilter {
     private BlockFilter() { }
 
     public static void main(String[] args) {
-        edu.princeton.cs.algs4.SET<String> set = new SET<String>();
+        SET<String> set = new SET<String>();
 
         // read in strings and add to set
         In in = new In(args[0]);

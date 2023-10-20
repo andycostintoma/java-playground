@@ -12,10 +12,8 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p5_union_find;
 
-import edu.princeton.cs.algs4.QuickFindUF;
-import edu.princeton.cs.algs4.UF;
-import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code QuickUnionUF} class represents a <em>union–find data type</em>

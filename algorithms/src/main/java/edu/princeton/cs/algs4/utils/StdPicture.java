@@ -8,8 +8,6 @@
 package edu.princeton.cs.algs4.utils;
 
 
-import edu.princeton.cs.algs4.Picture;
-
 /**
  *  <p><b>Overview.</b>
  *  The {@code StdPicture} class provides a basic capability for manipulating
@@ -24,7 +22,7 @@ import edu.princeton.cs.algs4.Picture;
  *  <b>Use in the curriculum.</b>
  *  The {@code StdPicture} class is intended for early usage in the
  *  curriculum, before objects.
- *  The {@link edu.princeton.cs.algs4.Picture} class is an object-oriented version that supports
+ *  The {@link Picture} class is an object-oriented version that supports
  *  manipulating multiple pictures at the same time.
  *
  *  <p>
@@ -160,7 +158,7 @@ public final class StdPicture {
     private static final int DEFAULT_SIZE = 512;
 
     // the underlying picture
-    private static edu.princeton.cs.algs4.Picture picture = new edu.princeton.cs.algs4.Picture(DEFAULT_SIZE, DEFAULT_SIZE);
+    private static Picture picture = new Picture(DEFAULT_SIZE, DEFAULT_SIZE);
 
     // singleton pattern: client can't instantiate
     private StdPicture() { }
@@ -177,11 +175,11 @@ public final class StdPicture {
     public static void init(int width, int height) {
         if (picture.isVisible()) {
             hide();
-            picture = new edu.princeton.cs.algs4.Picture(width, height);
+            picture = new Picture(width, height);
             show();
         }
         else {
-            picture = new edu.princeton.cs.algs4.Picture(width, height);
+            picture = new Picture(width, height);
         }
     }
 
@@ -208,7 +206,7 @@ public final class StdPicture {
      * @throws IllegalArgumentException if {@code name} is {@code null}
      */
     public static void read(String filename) {
-        edu.princeton.cs.algs4.Picture newPicture = new Picture(filename);
+        Picture newPicture = new Picture(filename);
 
         // same dimension, so copy pixels instead of using new Picture and GUI
         if (newPicture.width() == picture.width() && newPicture.height() == newPicture.height()) {

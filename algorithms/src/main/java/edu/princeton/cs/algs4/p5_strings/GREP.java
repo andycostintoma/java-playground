@@ -27,9 +27,8 @@
 
 package edu.princeton.cs.algs4.p5_strings;
 
-import edu.princeton.cs.algs4.NFA;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code GREP} class provides a client for reading in a sequence of
@@ -58,7 +57,7 @@ public class GREP {
      */
     public static void main(String[] args) {
         String regexp = "(.*" + args[0] + ".*)";
-        edu.princeton.cs.algs4.NFA nfa = new NFA(regexp);
+        NFA nfa = new NFA(regexp);
         while (StdIn.hasNextLine()) {
             String line = StdIn.readLine();
             if (nfa.recognizes(line)) {

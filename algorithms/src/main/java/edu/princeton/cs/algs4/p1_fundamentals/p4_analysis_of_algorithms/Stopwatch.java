@@ -13,8 +13,7 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p4_analysis_of_algorithms;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StopwatchCPU;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Stopwatch} data type is for measuring

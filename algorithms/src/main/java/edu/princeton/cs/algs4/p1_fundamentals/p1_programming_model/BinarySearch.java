@@ -23,11 +23,11 @@
  *
  ******************************************************************************/
 
-package edu.princeton.cs.algs4.p1_fundamentals.p1_basic_programming_model;
+package edu.princeton.cs.algs4.p1_fundamentals.p1_programming_model;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.Arrays;
 

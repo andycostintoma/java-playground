@@ -11,9 +11,8 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.Vector;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction.Vector;
 
 /**
  *  The {@code SparseVector} class represents a <em>d</em>-dimensional mathematical vector.

@@ -30,10 +30,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code DepthFirstPaths} class represents a data type for finding
@@ -65,7 +64,7 @@ public class DepthFirstPaths {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public DepthFirstPaths(edu.princeton.cs.algs4.Graph G, int s) {
+    public DepthFirstPaths(Graph G, int s) {
         this.s = s;
         edgeTo = new int[G.V()];
         marked = new boolean[G.V()];
@@ -74,7 +73,7 @@ public class DepthFirstPaths {
     }
 
     // depth first search from v
-    private void dfs(edu.princeton.cs.algs4.Graph G, int v) {
+    private void dfs(Graph G, int v) {
         marked[v] = true;
         for (int w : G.adj(v)) {
             if (!marked[w]) {
@@ -127,7 +126,7 @@ public class DepthFirstPaths {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.Graph G = new Graph(in);
+        Graph G = new Graph(in);
         int s = Integer.parseInt(args[1]);
         DepthFirstPaths dfs = new DepthFirstPaths(G, s);
 

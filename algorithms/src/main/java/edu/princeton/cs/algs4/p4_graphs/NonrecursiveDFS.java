@@ -37,9 +37,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.DepthFirstSearch;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.Iterator;
 
@@ -72,7 +72,7 @@ public class NonrecursiveDFS {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public NonrecursiveDFS(edu.princeton.cs.algs4.Graph G, int s) {
+    public NonrecursiveDFS(Graph G, int s) {
         marked = new boolean[G.V()];
 
         validateVertex(s);
@@ -133,7 +133,7 @@ public class NonrecursiveDFS {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.Graph G = new Graph(in);
+        Graph G = new Graph(in);
         int s = Integer.parseInt(args[1]);
         NonrecursiveDFS dfs = new NonrecursiveDFS(G, s);
         for (int v = 0; v < G.V(); v++)

@@ -12,9 +12,8 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.DijkstraSP;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code DijkstraAllPairsSP} class represents a data type for solving the
@@ -37,7 +36,7 @@ import edu.princeton.cs.algs4.StdOut;
  *  @author Kevin Wayne
  */
 public class DijkstraAllPairsSP {
-    private edu.princeton.cs.algs4.DijkstraSP[] all;
+    private DijkstraSP[] all;
 
     /**
      * Computes a shortest paths tree from each vertex to every other vertex in
@@ -47,7 +46,7 @@ public class DijkstraAllPairsSP {
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
     public DijkstraAllPairsSP(EdgeWeightedDigraph G) {
-        all  = new edu.princeton.cs.algs4.DijkstraSP[G.V()];
+        all  = new DijkstraSP[G.V()];
         for (int v = 0; v < G.V(); v++)
             all[v] = new DijkstraSP(G, v);
     }

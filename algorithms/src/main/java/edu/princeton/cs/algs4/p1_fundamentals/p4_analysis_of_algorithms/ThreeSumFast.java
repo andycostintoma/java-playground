@@ -41,8 +41,8 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p4_analysis_of_algorithms;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.Arrays;
 

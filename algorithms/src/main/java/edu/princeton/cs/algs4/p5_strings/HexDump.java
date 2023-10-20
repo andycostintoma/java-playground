@@ -26,10 +26,8 @@
 
 package edu.princeton.cs.algs4.p5_strings;
 
-import edu.princeton.cs.algs4.BinaryDump;
-import edu.princeton.cs.algs4.BinaryStdIn;
-import edu.princeton.cs.algs4.PictureDump;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.BinaryStdIn;
 
 /**
  *  The {@code HexDump} class provides a client for displaying the contents

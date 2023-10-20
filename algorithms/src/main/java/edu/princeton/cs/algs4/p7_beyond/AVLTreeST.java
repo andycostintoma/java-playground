@@ -25,7 +25,10 @@
 
 package edu.princeton.cs.algs4.p7_beyond;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p3_searching.*;
 
 import java.util.NoSuchElementException;
 

@@ -28,13 +28,11 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.LongestCommonSubstring;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.SuffixArray;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
- *  The {@code LongestRepeatedSubstring} class provides a {@link edu.princeton.cs.algs4.SuffixArray}
+ *  The {@code LongestRepeatedSubstring} class provides a {@link SuffixArray}
  *  client for computing the longest repeated substring of a string that
  *  appears at least twice. The repeated substrings may overlap (but must
  *  be distinct).
@@ -70,7 +68,7 @@ public class LongestRepeatedSubstring {
      */
     public static String lrs(String text) {
         int n = text.length();
-        edu.princeton.cs.algs4.SuffixArray sa = new SuffixArray(text);
+        SuffixArray sa = new SuffixArray(text);
         String lrs = "";
         for (int i = 1; i < n; i++) {
             int length = sa.lcp(i);

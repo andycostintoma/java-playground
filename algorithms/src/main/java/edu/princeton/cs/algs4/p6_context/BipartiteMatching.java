@@ -10,8 +10,11 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.HopcroftKarp;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p4_graphs.BipartiteX;
+import edu.princeton.cs.algs4.p4_graphs.Graph;
+import edu.princeton.cs.algs4.p4_graphs.GraphGenerator;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code BipartiteMatching} class represents a data type for computing a

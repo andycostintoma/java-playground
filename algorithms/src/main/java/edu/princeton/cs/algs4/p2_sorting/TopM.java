@@ -19,13 +19,15 @@
 
 package edu.princeton.cs.algs4.p2_sorting;
 
-import edu.princeton.cs.algs4.MinPQ;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p2_data_abstraction.Transaction;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
 
 /**
  *  The {@code TopM} class provides a client that reads a sequence of
  *  transactions from standard input and prints the <em>m</em> largest ones
- *  to standard output. This implementation uses a {@link edu.princeton.cs.algs4.MinPQ} of size
+ *  to standard output. This implementation uses a {@link MinPQ} of size
  *  at most <em>m</em> + 1 to identify the <em>M</em> largest transactions
  *  and a {@link Stack} to output them in the proper order.
  *  <p>
@@ -49,7 +51,7 @@ public class TopM {
      */
     public static void main(String[] args) {
         int m = Integer.parseInt(args[0]);
-        edu.princeton.cs.algs4.MinPQ<Transaction> pq = new MinPQ<Transaction>(m+1);
+        MinPQ<Transaction> pq = new MinPQ<Transaction>(m+1);
 
         while (StdIn.hasNextLine()) {
             // Create an entry from the next line and put on the PQ.

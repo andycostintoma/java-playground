@@ -61,9 +61,8 @@
 
 package edu.princeton.cs.algs4.p7_beyond;
 
-import edu.princeton.cs.algs4.Complex;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code FFT} class provides methods for computing the
@@ -92,7 +91,7 @@ import edu.princeton.cs.algs4.StdRandom;
  */
 public class FFT {
 
-    private static final edu.princeton.cs.algs4.Complex ZERO = new edu.princeton.cs.algs4.Complex(0, 0);
+    private static final Complex ZERO = new Complex(0, 0);
 
     // Do not instantiate.
     private FFT() { }
@@ -104,12 +103,12 @@ public class FFT {
      * @return the FFT of the complex array {@code x}
      * @throws IllegalArgumentException if the length of {@code x} is not a power of 2
      */
-    public static edu.princeton.cs.algs4.Complex[] fft(edu.princeton.cs.algs4.Complex[] x) {
+    public static Complex[] fft(Complex[] x) {
         int n = x.length;
 
         // base case
         if (n == 1) {
-            return new edu.princeton.cs.algs4.Complex[] { x[0] };
+            return new Complex[] { x[0] };
         }
 
         // radix 2 Cooley-Tukey FFT
@@ -118,24 +117,24 @@ public class FFT {
         }
 
         // fft of even terms
-        edu.princeton.cs.algs4.Complex[] even = new edu.princeton.cs.algs4.Complex[n/2];
+        Complex[] even = new Complex[n/2];
         for (int k = 0; k < n/2; k++) {
             even[k] = x[2*k];
         }
-        edu.princeton.cs.algs4.Complex[] q = fft(even);
+        Complex[] q = fft(even);
 
         // fft of odd terms
-        edu.princeton.cs.algs4.Complex[] odd = even;  // reuse the array
+        Complex[] odd = even;  // reuse the array
         for (int k = 0; k < n/2; k++) {
             odd[k] = x[2*k + 1];
         }
-        edu.princeton.cs.algs4.Complex[] r = fft(odd);
+        Complex[] r = fft(odd);
 
         // combine
-        edu.princeton.cs.algs4.Complex[] y = new edu.princeton.cs.algs4.Complex[n];
+        Complex[] y = new Complex[n];
         for (int k = 0; k < n/2; k++) {
             double kth = -2 * k * Math.PI / n;
-            edu.princeton.cs.algs4.Complex wk = new edu.princeton.cs.algs4.Complex(Math.cos(kth), Math.sin(kth));
+            Complex wk = new Complex(Math.cos(kth), Math.sin(kth));
             y[k]       = q[k].plus(wk.times(r[k]));
             y[k + n/2] = q[k].minus(wk.times(r[k]));
         }
@@ -150,9 +149,9 @@ public class FFT {
      * @return the inverse FFT of the complex array {@code x}
      * @throws IllegalArgumentException if the length of {@code x} is not a power of 2
      */
-    public static edu.princeton.cs.algs4.Complex[] ifft(edu.princeton.cs.algs4.Complex[] x) {
+    public static Complex[] ifft(Complex[] x) {
         int n = x.length;
-        edu.princeton.cs.algs4.Complex[] y = new edu.princeton.cs.algs4.Complex[n];
+        Complex[] y = new Complex[n];
 
         // take conjugate
         for (int i = 0; i < n; i++) {
@@ -185,7 +184,7 @@ public class FFT {
      * @throws IllegalArgumentException if the length of {@code x} does not equal
      *         the length of {@code y} or if the length is not a power of 2
      */
-    public static edu.princeton.cs.algs4.Complex[] cconvolve(edu.princeton.cs.algs4.Complex[] x, edu.princeton.cs.algs4.Complex[] y) {
+    public static Complex[] cconvolve(Complex[] x, Complex[] y) {
 
         // should probably pad x and y with 0s so that they have same length
         // and are powers of 2
@@ -196,11 +195,11 @@ public class FFT {
         int n = x.length;
 
         // compute FFT of each sequence
-        edu.princeton.cs.algs4.Complex[] a = fft(x);
-        edu.princeton.cs.algs4.Complex[] b = fft(y);
+        Complex[] a = fft(x);
+        Complex[] b = fft(y);
 
         // point-wise multiply
-        edu.princeton.cs.algs4.Complex[] c = new edu.princeton.cs.algs4.Complex[n];
+        Complex[] c = new Complex[n];
         for (int i = 0; i < n; i++) {
             c[i] = a[i].times(b[i]);
         }
@@ -218,14 +217,14 @@ public class FFT {
      * @throws IllegalArgumentException if the length of {@code x} does not equal
      *         the length of {@code y} or if the length is not a power of 2
      */
-    public static edu.princeton.cs.algs4.Complex[] convolve(edu.princeton.cs.algs4.Complex[] x, edu.princeton.cs.algs4.Complex[] y) {
-        edu.princeton.cs.algs4.Complex[] a = new edu.princeton.cs.algs4.Complex[2*x.length];
+    public static Complex[] convolve(Complex[] x, Complex[] y) {
+        Complex[] a = new Complex[2*x.length];
         for (int i = 0; i < x.length; i++)
             a[i] = x[i];
         for (int i = x.length; i < 2*x.length; i++)
             a[i] = ZERO;
 
-        edu.princeton.cs.algs4.Complex[] b = new edu.princeton.cs.algs4.Complex[2*y.length];
+        Complex[] b = new Complex[2*y.length];
         for (int i = 0; i < y.length; i++)
             b[i] = y[i];
         for (int i = y.length; i < 2*y.length; i++)
@@ -235,7 +234,7 @@ public class FFT {
     }
 
     // display an array of Complex numbers to standard output
-    private static void show(edu.princeton.cs.algs4.Complex[] x, String title) {
+    private static void show(Complex[] x, String title) {
         StdOut.println(title);
         StdOut.println("-------------------");
         for (int i = 0; i < x.length; i++) {
@@ -256,25 +255,25 @@ public class FFT {
      */
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
-        edu.princeton.cs.algs4.Complex[] x = new edu.princeton.cs.algs4.Complex[n];
+        Complex[] x = new Complex[n];
 
         // original data
         for (int i = 0; i < n; i++) {
-            x[i] = new edu.princeton.cs.algs4.Complex(i, 0);
-            x[i] = new edu.princeton.cs.algs4.Complex(StdRandom.uniformDouble(-1.0, 1.0), 0);
+            x[i] = new Complex(i, 0);
+            x[i] = new Complex(StdRandom.uniformDouble(-1.0, 1.0), 0);
         }
         show(x, "x");
 
         // FFT of original data
-        edu.princeton.cs.algs4.Complex[] y = fft(x);
+        Complex[] y = fft(x);
         show(y, "y = fft(x)");
 
         // take inverse FFT
-        edu.princeton.cs.algs4.Complex[] z = ifft(y);
+        Complex[] z = ifft(y);
         show(z, "z = ifft(y)");
 
         // circular convolution of x with itself
-        edu.princeton.cs.algs4.Complex[] c = cconvolve(x, x);
+        Complex[] c = cconvolve(x, x);
         show(c, "c = cconvolve(x, x)");
 
         // linear convolution of x with itself

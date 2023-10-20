@@ -41,8 +41,10 @@
 package edu.princeton.cs.algs4.p4_graphs;
 
 
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code BreadthFirstPaths} class represents a data type for finding
@@ -77,7 +79,7 @@ public class BreadthFirstPaths {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= s < V}
      */
-    public BreadthFirstPaths(edu.princeton.cs.algs4.Graph G, int s) {
+    public BreadthFirstPaths(Graph G, int s) {
         marked = new boolean[G.V()];
         distTo = new int[G.V()];
         edgeTo = new int[G.V()];
@@ -97,7 +99,7 @@ public class BreadthFirstPaths {
      * @throws IllegalArgumentException unless {@code 0 <= s < V} for each vertex
      *         {@code s} in {@code sources}
      */
-    public BreadthFirstPaths(edu.princeton.cs.algs4.Graph G, Iterable<Integer> sources) {
+    public BreadthFirstPaths(Graph G, Iterable<Integer> sources) {
         marked = new boolean[G.V()];
         distTo = new int[G.V()];
         edgeTo = new int[G.V()];
@@ -109,7 +111,7 @@ public class BreadthFirstPaths {
 
 
     // breadth-first search from a single source
-    private void bfs(edu.princeton.cs.algs4.Graph G, int s) {
+    private void bfs(Graph G, int s) {
         Queue<Integer> q = new Queue<Integer>();
         for (int v = 0; v < G.V(); v++)
             distTo[v] = INFINITY;
@@ -131,7 +133,7 @@ public class BreadthFirstPaths {
     }
 
     // breadth-first search from multiple sources
-    private void bfs(edu.princeton.cs.algs4.Graph G, Iterable<Integer> sources) {
+    private void bfs(Graph G, Iterable<Integer> sources) {
         Queue<Integer> q = new Queue<Integer>();
         for (int s : sources) {
             marked[s] = true;
@@ -195,7 +197,7 @@ public class BreadthFirstPaths {
 
 
     // check optimality conditions for single source
-    private boolean check(edu.princeton.cs.algs4.Graph G, int s) {
+    private boolean check(Graph G, int s) {
 
         // check that the distance of s = 0
         if (distTo[s] != 0) {
@@ -271,7 +273,7 @@ public class BreadthFirstPaths {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.Graph G = new Graph(in);
+        Graph G = new Graph(in);
         // StdOut.println(G);
 
         int s = Integer.parseInt(args[1]);

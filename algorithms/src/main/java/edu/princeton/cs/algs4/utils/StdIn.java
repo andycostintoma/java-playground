@@ -9,10 +9,11 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Locale;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**

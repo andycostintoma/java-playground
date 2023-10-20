@@ -47,8 +47,6 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.StdOut;
-
 import java.util.Random;
 
 /**

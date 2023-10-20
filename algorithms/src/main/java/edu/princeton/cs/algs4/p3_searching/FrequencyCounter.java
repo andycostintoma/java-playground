@@ -26,9 +26,8 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code FrequencyCounter} class provides a client for
@@ -59,7 +58,7 @@ public class FrequencyCounter {
     public static void main(String[] args) {
         int distinct = 0, words = 0;
         int minlen = Integer.parseInt(args[0]);
-        edu.princeton.cs.algs4.ST<String, Integer> st = new ST<String, Integer>();
+        ST<String, Integer> st = new ST<String, Integer>();
 
         // compute frequency counts
         while (!StdIn.isEmpty()) {

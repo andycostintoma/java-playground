@@ -9,14 +9,19 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.BinaryIn;
-import edu.princeton.cs.algs4.StdIn;
-
-import java.io.*;
-import java.net.Socket;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.Socket;
 import java.net.URLConnection;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Locale;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
@@ -623,7 +628,7 @@ public final class In {
      * an array of integers.
      *
      * @return     the integers on standard input
-     * @deprecated Replaced by {@link edu.princeton.cs.algs4.StdIn#readAllInts()}.
+     * @deprecated Replaced by {@link StdIn#readAllInts()}.
      */
     @Deprecated
     public static int[] readInts() {
@@ -635,7 +640,7 @@ public final class In {
      * an array of doubles.
      *
      * @return     the doubles on standard input
-     * @deprecated Replaced by {@link edu.princeton.cs.algs4.StdIn#readAllDoubles()}.
+     * @deprecated Replaced by {@link StdIn#readAllDoubles()}.
      */
     @Deprecated
     public static double[] readDoubles() {

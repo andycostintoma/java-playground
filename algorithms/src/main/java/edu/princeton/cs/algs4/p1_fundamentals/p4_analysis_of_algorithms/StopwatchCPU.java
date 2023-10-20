@@ -14,11 +14,10 @@
 
 package edu.princeton.cs.algs4.p1_fundamentals.p4_analysis_of_algorithms;
 
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.Stopwatch;
+import edu.princeton.cs.algs4.utils.StdOut;
 
-import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
+import java.lang.management.ManagementFactory;
 
 /**
  *  The {@code StopwatchCPU} data type is for measuring

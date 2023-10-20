@@ -11,9 +11,11 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.BinaryOut;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
@@ -367,7 +369,7 @@ public final class BinaryIn {
      */
     public static void main(String[] args) {
         BinaryIn  in  = new BinaryIn(args[0]);
-        edu.princeton.cs.algs4.BinaryOut out = new BinaryOut(args[1]);
+        BinaryOut out = new BinaryOut(args[1]);
 
         // read one 8-bit char at a time
         while (!in.isEmpty()) {

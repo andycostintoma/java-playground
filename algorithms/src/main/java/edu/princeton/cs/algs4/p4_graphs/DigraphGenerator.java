@@ -9,10 +9,9 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.SET;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.p3_searching.SET;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code DigraphGenerator} class provides static methods for creating
@@ -56,10 +55,10 @@ public class DigraphGenerator {
      *     of {@code E} edges
      * @throws IllegalArgumentException if no such simple digraph exists
      */
-    public static edu.princeton.cs.algs4.Digraph simple(int V, int E) {
+    public static Digraph simple(int V, int E) {
         if (E > (long) V*(V-1)) throw new IllegalArgumentException("Too many edges");
         if (E < 0)              throw new IllegalArgumentException("Too few edges");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         SET<Edge> set = new SET<Edge>();
         while (G.E() < E) {
             int v = StdRandom.uniformInt(V);
@@ -84,10 +83,10 @@ public class DigraphGenerator {
      *     any two vertices with probability {@code p}
      * @throws IllegalArgumentException if probability is not between 0 and 1
      */
-    public static edu.princeton.cs.algs4.Digraph simple(int V, double p) {
+    public static Digraph simple(int V, double p) {
         if (p < 0.0 || p > 1.0)
             throw new IllegalArgumentException("Probability must be between 0 and 1");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         for (int v = 0; v < V; v++)
             for (int w = 0; w < V; w++)
                 if (v != w)
@@ -103,8 +102,8 @@ public class DigraphGenerator {
      * @param V the number of vertices
      * @return the complete digraph on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph complete(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph complete(int V) {
+        Digraph G = new Digraph(V);
         for (int v = 0; v < V; v++)
             for (int w = 0; w < V; w++)
                     if (v != w) G.addEdge(v, w);
@@ -120,10 +119,10 @@ public class DigraphGenerator {
      *     of {@code E} edges
      * @throws IllegalArgumentException if no such simple DAG exists
      */
-    public static edu.princeton.cs.algs4.Digraph dag(int V, int E) {
+    public static Digraph dag(int V, int E) {
         if (E > (long) V*(V-1) / 2) throw new IllegalArgumentException("Too many edges");
         if (E < 0)                  throw new IllegalArgumentException("Too few edges");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         SET<Edge> set = new SET<Edge>();
         int[] vertices = new int[V];
         for (int i = 0; i < V; i++)
@@ -148,8 +147,8 @@ public class DigraphGenerator {
      * @param V the number of vertices
      * @return a random tournament digraph on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph tournament(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph tournament(int V) {
+        Digraph G = new Digraph(V);
         for (int v = 0; v < G.V(); v++) {
             for (int w = v+1; w < G.V(); w++) {
                 if (StdRandom.bernoulli(0.5)) G.addEdge(v, w);
@@ -167,8 +166,8 @@ public class DigraphGenerator {
      * @param V the number of vertices
      * @return a complete rooted-in DAG on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph completeRootedInDAG(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph completeRootedInDAG(int V) {
+        Digraph G = new Digraph(V);
         int[] vertices = new int[V];
         for (int i = 0; i < V; i++)
             vertices[i] = i;
@@ -189,10 +188,10 @@ public class DigraphGenerator {
      * @param E the number of edges
      * @return a random rooted-in DAG on {@code V} vertices and {@code E} edges
      */
-    public static edu.princeton.cs.algs4.Digraph rootedInDAG(int V, int E) {
+    public static Digraph rootedInDAG(int V, int E) {
         if (E > (long) V*(V-1) / 2) throw new IllegalArgumentException("Too many edges");
         if (E < V-1)                throw new IllegalArgumentException("Too few edges");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         SET<Edge> set = new SET<Edge>();
 
         // fix a topological order
@@ -228,8 +227,8 @@ public class DigraphGenerator {
      * @param V the number of vertices
      * @return a complete rooted-out DAG on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph completeRootedOutDAG(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph completeRootedOutDAG(int V) {
+        Digraph G = new Digraph(V);
         int[] vertices = new int[V];
         for (int i = 0; i < V; i++)
             vertices[i] = i;
@@ -250,10 +249,10 @@ public class DigraphGenerator {
      * @param E the number of edges
      * @return a random rooted-out DAG on {@code V} vertices and {@code E} edges
      */
-    public static edu.princeton.cs.algs4.Digraph rootedOutDAG(int V, int E) {
+    public static Digraph rootedOutDAG(int V, int E) {
         if (E > (long) V*(V-1) / 2) throw new IllegalArgumentException("Too many edges");
         if (E < V-1)                throw new IllegalArgumentException("Too few edges");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         SET<Edge> set = new SET<Edge>();
 
         // fix a topological order
@@ -290,7 +289,7 @@ public class DigraphGenerator {
      * @param V the number of vertices
      * @return a random rooted-in tree on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph rootedInTree(int V) {
+    public static Digraph rootedInTree(int V) {
         return rootedInDAG(V, V-1);
     }
 
@@ -302,7 +301,7 @@ public class DigraphGenerator {
      * @param V the number of vertices
      * @return a random rooted-out tree on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph rootedOutTree(int V) {
+    public static Digraph rootedOutTree(int V) {
         return rootedOutDAG(V, V-1);
     }
 
@@ -311,8 +310,8 @@ public class DigraphGenerator {
      * @param V the number of vertices in the path
      * @return a digraph that is a directed path on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph path(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph path(int V) {
+        Digraph G = new Digraph(V);
         int[] vertices = new int[V];
         for (int i = 0; i < V; i++)
             vertices[i] = i;
@@ -328,8 +327,8 @@ public class DigraphGenerator {
      * @param V the number of vertices in the binary tree
      * @return a digraph that is a complete binary tree on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph binaryTree(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph binaryTree(int V) {
+        Digraph G = new Digraph(V);
         int[] vertices = new int[V];
         for (int i = 0; i < V; i++)
             vertices[i] = i;
@@ -345,8 +344,8 @@ public class DigraphGenerator {
      * @param V the number of vertices in the cycle
      * @return a digraph that is a directed cycle on {@code V} vertices
      */
-    public static edu.princeton.cs.algs4.Digraph cycle(int V) {
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+    public static Digraph cycle(int V) {
+        Digraph G = new Digraph(V);
         int[] vertices = new int[V];
         for (int i = 0; i < V; i++)
             vertices[i] = i;
@@ -367,12 +366,12 @@ public class DigraphGenerator {
      *         and {@code E} edges
      * @throws IllegalArgumentException if either {@code V <= 0} or {@code E <= 0}
      */
-    public static edu.princeton.cs.algs4.Digraph eulerianCycle(int V, int E) {
+    public static Digraph eulerianCycle(int V, int E) {
         if (E <= 0)
             throw new IllegalArgumentException("An Eulerian cycle must have at least one edge");
         if (V <= 0)
             throw new IllegalArgumentException("An Eulerian cycle must have at least one vertex");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         int[] vertices = new int[E];
         for (int i = 0; i < E; i++)
             vertices[i] = StdRandom.uniformInt(V);
@@ -392,12 +391,12 @@ public class DigraphGenerator {
      *         and {@code E} edges
      * @throws IllegalArgumentException if either {@code V <= 0} or {@code E < 0}
      */
-    public static edu.princeton.cs.algs4.Digraph eulerianPath(int V, int E) {
+    public static Digraph eulerianPath(int V, int E) {
         if (E < 0)
             throw new IllegalArgumentException("negative number of edges");
         if (V <= 0)
             throw new IllegalArgumentException("An Eulerian path must have at least one vertex");
-        edu.princeton.cs.algs4.Digraph G = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G = new Digraph(V);
         int[] vertices = new int[E+1];
         for (int i = 0; i < E+1; i++)
             vertices[i] = StdRandom.uniformInt(V);
@@ -424,7 +423,7 @@ public class DigraphGenerator {
                {@code E} edges, with (at most) {@code c} strong components
      * @throws IllegalArgumentException if {@code c} is larger than {@code V}
      */
-    public static edu.princeton.cs.algs4.Digraph strong(int V, int E, int c) {
+    public static Digraph strong(int V, int E, int c) {
         if (c >= V || c <= 0)
             throw new IllegalArgumentException("Number of components must be between 1 and V");
         if (E <= 2*(V-c))
@@ -433,7 +432,7 @@ public class DigraphGenerator {
             throw new IllegalArgumentException("Too many edges");
 
         // the digraph
-        edu.princeton.cs.algs4.Digraph G = new Digraph(V);
+        Digraph G = new Digraph(V);
 
         // edges added to G (to avoid duplicate edges)
         SET<Edge> set = new SET<Edge>();

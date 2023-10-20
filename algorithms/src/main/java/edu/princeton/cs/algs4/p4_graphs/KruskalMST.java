@@ -36,9 +36,10 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.Edge;
-import edu.princeton.cs.algs4.EdgeWeightedGraph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p1_fundamentals.p5_union_find.UF;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.Arrays;
 
@@ -78,18 +79,18 @@ public class KruskalMST {
     private static final double FLOATING_POINT_EPSILON = 1.0E-12;
 
     private double weight;                        // weight of MST
-    private Queue<edu.princeton.cs.algs4.Edge> mst = new Queue<edu.princeton.cs.algs4.Edge>();  // edges in MST
+    private Queue<Edge> mst = new Queue<Edge>();  // edges in MST
 
     /**
      * Compute a minimum spanning tree (or forest) of an edge-weighted graph.
      * @param G the edge-weighted graph
      */
-    public KruskalMST(edu.princeton.cs.algs4.EdgeWeightedGraph G) {
+    public KruskalMST(EdgeWeightedGraph G) {
 
         // create array of edges, sorted by weight
-        edu.princeton.cs.algs4.Edge[] edges = new edu.princeton.cs.algs4.Edge[G.E()];
+        Edge[] edges = new Edge[G.E()];
         int t = 0;
-        for (edu.princeton.cs.algs4.Edge e: G.edges()) {
+        for (Edge e: G.edges()) {
             edges[t++] = e;
         }
         Arrays.sort(edges);
@@ -97,7 +98,7 @@ public class KruskalMST {
         // run greedy algorithm
         UF uf = new UF(G.V());
         for (int i = 0; i < G.E() && mst.size() < G.V() - 1; i++) {
-            edu.princeton.cs.algs4.Edge e = edges[i];
+            Edge e = edges[i];
             int v = e.either();
             int w = e.other(v);
 
@@ -118,7 +119,7 @@ public class KruskalMST {
      * @return the edges in a minimum spanning tree (or forest) as
      *    an iterable of edges
      */
-    public Iterable<edu.princeton.cs.algs4.Edge> edges() {
+    public Iterable<Edge> edges() {
         return mst;
     }
 
@@ -131,11 +132,11 @@ public class KruskalMST {
     }
 
     // check optimality conditions (takes time proportional to E V lg* V)
-    private boolean check(edu.princeton.cs.algs4.EdgeWeightedGraph G) {
+    private boolean check(EdgeWeightedGraph G) {
 
         // check total weight
         double total = 0.0;
-        for (edu.princeton.cs.algs4.Edge e : edges()) {
+        for (Edge e : edges()) {
             total += e.weight();
         }
         if (Math.abs(total - weight()) > FLOATING_POINT_EPSILON) {
@@ -145,7 +146,7 @@ public class KruskalMST {
 
         // check that it is acyclic
         UF uf = new UF(G.V());
-        for (edu.princeton.cs.algs4.Edge e : edges()) {
+        for (Edge e : edges()) {
             int v = e.either(), w = e.other(v);
             if (uf.find(v) == uf.find(w)) {
                 System.err.println("Not a forest");
@@ -155,7 +156,7 @@ public class KruskalMST {
         }
 
         // check that it is a spanning forest
-        for (edu.princeton.cs.algs4.Edge e : G.edges()) {
+        for (Edge e : G.edges()) {
             int v = e.either(), w = e.other(v);
             if (uf.find(v) != uf.find(w)) {
                 System.err.println("Not a spanning forest");
@@ -164,17 +165,17 @@ public class KruskalMST {
         }
 
         // check that it is a minimal spanning forest (cut optimality conditions)
-        for (edu.princeton.cs.algs4.Edge e : edges()) {
+        for (Edge e : edges()) {
 
             // all edges in MST except e
             uf = new UF(G.V());
-            for (edu.princeton.cs.algs4.Edge f : mst) {
+            for (Edge f : mst) {
                 int x = f.either(), y = f.other(x);
                 if (f != e) uf.union(x, y);
             }
 
             // check that e is min weight edge in crossing cut
-            for (edu.princeton.cs.algs4.Edge f : G.edges()) {
+            for (Edge f : G.edges()) {
                 int x = f.either(), y = f.other(x);
                 if (uf.find(x) != uf.find(y)) {
                     if (f.weight() < e.weight()) {
@@ -197,7 +198,7 @@ public class KruskalMST {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.EdgeWeightedGraph G = new EdgeWeightedGraph(in);
+        EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         KruskalMST mst = new KruskalMST(G);
         for (Edge e : mst.edges()) {
             StdOut.println(e);

@@ -27,7 +27,11 @@
 
 package edu.princeton.cs.algs4.p5_strings;
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p4_graphs.Digraph;
+import edu.princeton.cs.algs4.p4_graphs.DirectedDFS;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Bag;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
 
 /**
  *  The {@code NFA} class provides a data type for creating a

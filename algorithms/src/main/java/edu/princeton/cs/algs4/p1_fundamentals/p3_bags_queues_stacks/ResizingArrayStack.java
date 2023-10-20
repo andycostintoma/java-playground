@@ -1,41 +1,39 @@
 /******************************************************************************
- *  Compilation:  javac LinkedStack.java
- *  Execution:    java LinkedStack < input.txt
+ *  Compilation:  javac ResizingArrayStack.java
+ *  Execution:    java ResizingArrayStack < input.txt
  *  Dependencies: StdIn.java StdOut.java
  *  Data files:   https://algs4.cs.princeton.edu/13stacks/tobe.txt
  *
- *  A generic stack, implemented using a linked list. Each stack
- *  element is of type Item.
+ *  Stack implementation with a resizing array.
  *
  *  % more tobe.txt
  *  to be or not to - be - - that - - - is
  *
- *  % java LinkedStack < tobe.txt
+ *  % java ResizingArrayStack < tobe.txt
  *  to be not that or be (2 left on stack)
  *
  ******************************************************************************/
 
-package edu.princeton.cs.algs4.p1_fundamentals.p3_bags_stacks_queues;
+package edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks;
 
-import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
 /**
- *  The {@code LinkedStack} class represents a last-in-first-out (LIFO) stack of
- *  generic items.
+ *  The {@code ResizingArrayStack} class represents a last-in-first-out (LIFO) stack
+ *  of generic items.
  *  It supports the usual <em>push</em> and <em>pop</em> operations, along with methods
  *  for peeking at the top item, testing if the stack is empty, and iterating through
  *  the items in LIFO order.
  *  <p>
- *  This implementation uses a singly linked list with a non-static nested class for
- *  linked-list nodes. See {@link Stack} for a version that uses a static nested class.
- *  The <em>push</em>, <em>pop</em>, <em>peek</em>, <em>size</em>, and <em>is-empty</em>
- *  operations all take constant time in the worst case.
+ *  This implementation uses a resizing array, which double the underlying array
+ *  when it is full and halves the underlying array when it is one-quarter full.
+ *  The <em>push</em> and <em>pop</em> operations take constant amortized time.
+ *  The <em>size</em>, <em>peek</em>, and <em>is-empty</em> operations takes
+ *  constant time in the worst case.
  *  <p>
  *  For additional documentation,
  *  see <a href="https://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
@@ -44,23 +42,21 @@ import java.util.NoSuchElementException;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class LinkedStack<Item> implements Iterable<Item> {
-    private int n;          // size of the stack
-    private Node first;     // top of stack
+public class ResizingArrayStack<Item> implements Iterable<Item> {
 
-    // helper linked list class
-    private class Node {
-        private Item item;
-        private Node next;
-    }
+    // initial capacity of underlying resizing array
+    private static final int INIT_CAPACITY = 8;
+
+    private Item[] a;         // array of items
+    private int n;            // number of elements on stack
+
 
     /**
      * Initializes an empty stack.
      */
-    public LinkedStack() {
-        first = null;
+    public ResizingArrayStack() {
+        a = (Item[]) new Object[INIT_CAPACITY];
         n = 0;
-        assert check();
     }
 
     /**
@@ -68,7 +64,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
      * @return true if this stack is empty; false otherwise
      */
     public boolean isEmpty() {
-        return first == null;
+        return n == 0;
     }
 
     /**
@@ -79,53 +75,57 @@ public class LinkedStack<Item> implements Iterable<Item> {
         return n;
     }
 
+
+    // resize the underlying array holding the elements
+    private void resize(int capacity) {
+        assert capacity >= n;
+
+        // textbook implementation
+        Item[] copy = (Item[]) new Object[capacity];
+        for (int i = 0; i < n; i++) {
+            copy[i] = a[i];
+        }
+        a = copy;
+
+       // alternative implementation
+       // a = java.util.Arrays.copyOf(a, capacity);
+    }
+
+
+
     /**
      * Adds the item to this stack.
      * @param item the item to add
      */
     public void push(Item item) {
-        Node oldfirst = first;
-        first = new Node();
-        first.item = item;
-        first.next = oldfirst;
-        n++;
-        assert check();
+        if (n == a.length) resize(2*a.length);    // double size of array if necessary
+        a[n++] = item;                            // add item
     }
 
     /**
      * Removes and returns the item most recently added to this stack.
      * @return the item most recently added
-     * @throws NoSuchElementException if this stack is empty
+     * @throws java.util.NoSuchElementException if this stack is empty
      */
     public Item pop() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        Item item = first.item;        // save item to return
-        first = first.next;            // delete first node
+        Item item = a[n-1];
+        a[n-1] = null;                              // to avoid loitering
         n--;
-        assert check();
-        return item;                   // return the saved item
+        // shrink size of array if necessary
+        if (n > 0 && n == a.length/4) resize(a.length/2);
+        return item;
     }
 
 
     /**
      * Returns (but does not remove) the item most recently added to this stack.
      * @return the item most recently added to this stack
-     * @throws NoSuchElementException if this stack is empty
+     * @throws java.util.NoSuchElementException if this stack is empty
      */
     public Item peek() {
         if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        return first.item;
-    }
-
-    /**
-     * Returns a string representation of this stack.
-     * @return the sequence of items in the stack in LIFO order, separated by spaces
-     */
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        for (Item item : this)
-            s.append(item + " ");
-        return s.toString();
+        return a[n-1];
     }
 
     /**
@@ -133,73 +133,43 @@ public class LinkedStack<Item> implements Iterable<Item> {
      * @return an iterator to this stack that iterates through the items in LIFO order.
      */
     public Iterator<Item> iterator() {
-        return new LinkedIterator();
+        return new ReverseArrayIterator();
     }
 
-    // a linked-list iterator
-    private class LinkedIterator implements Iterator<Item> {
-        private Node current = first;
+    // a array iterator, in reverse order
+    private class ReverseArrayIterator implements Iterator<Item> {
+        private int i;
+
+        public ReverseArrayIterator() {
+            i = n-1;
+        }
 
         public boolean hasNext() {
-            return current != null;
+            return i >= 0;
         }
 
         public Item next() {
             if (!hasNext()) throw new NoSuchElementException();
-            Item item = current.item;
-            current = current.next;
-            return item;
+            return a[i--];
         }
     }
 
-
-    // check internal invariants
-    private boolean check() {
-
-        // check a few properties of instance variable 'first'
-        if (n < 0) {
-            return false;
-        }
-        if (n == 0) {
-            if (first != null) return false;
-        }
-        else if (n == 1) {
-            if (first == null)      return false;
-            if (first.next != null) return false;
-        }
-        else {
-            if (first == null)      return false;
-            if (first.next == null) return false;
-        }
-
-        // check internal consistency of instance variable n
-        int numberOfNodes = 0;
-        for (Node x = first; x != null && numberOfNodes <= n; x = x.next) {
-            numberOfNodes++;
-        }
-        if (numberOfNodes != n) return false;
-
-        return true;
-    }
 
     /**
-     * Unit tests the {@code LinkedStack} data type.
+     * Unit tests the {@code Stack} data type.
      *
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        LinkedStack<String> stack = new LinkedStack<String>();
+        ResizingArrayStack<String> stack = new ResizingArrayStack<String>();
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
-            if (!item.equals("-"))
-                stack.push(item);
-            else if (!stack.isEmpty())
-                StdOut.print(stack.pop() + " ");
+            if (!item.equals("-")) stack.push(item);
+            else if (!stack.isEmpty()) StdOut.print(stack.pop() + " ");
         }
         StdOut.println("(" + stack.size() + " left on stack)");
     }
 }
-
 
 /******************************************************************************
  *  Copyright 2002-2022, Robert Sedgewick and Kevin Wayne.

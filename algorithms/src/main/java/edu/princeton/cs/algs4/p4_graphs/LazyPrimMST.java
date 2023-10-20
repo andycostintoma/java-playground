@@ -41,12 +41,11 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.BoruvkaMST;
-import edu.princeton.cs.algs4.Edge;
-import edu.princeton.cs.algs4.EdgeWeightedGraph;
-import edu.princeton.cs.algs4.KruskalMST;
-import edu.princeton.cs.algs4.PrimMST;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p1_fundamentals.p5_union_find.UF;
+import edu.princeton.cs.algs4.p2_sorting.MinPQ;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code LazyPrimMST} class represents a data type for computing a
@@ -80,17 +79,17 @@ public class LazyPrimMST {
     private static final double FLOATING_POINT_EPSILON = 1.0E-12;
 
     private double weight;       // total weight of MST
-    private Queue<edu.princeton.cs.algs4.Edge> mst;     // edges in the MST
+    private Queue<Edge> mst;     // edges in the MST
     private boolean[] marked;    // marked[v] = true iff v on tree
-    private MinPQ<edu.princeton.cs.algs4.Edge> pq;      // edges with one endpoint in tree
+    private MinPQ<Edge> pq;      // edges with one endpoint in tree
 
     /**
      * Compute a minimum spanning tree (or forest) of an edge-weighted graph.
      * @param G the edge-weighted graph
      */
-    public LazyPrimMST(edu.princeton.cs.algs4.EdgeWeightedGraph G) {
-        mst = new Queue<edu.princeton.cs.algs4.Edge>();
-        pq = new MinPQ<edu.princeton.cs.algs4.Edge>();
+    public LazyPrimMST(EdgeWeightedGraph G) {
+        mst = new Queue<Edge>();
+        pq = new MinPQ<Edge>();
         marked = new boolean[G.V()];
         for (int v = 0; v < G.V(); v++)     // run Prim from all vertices to
             if (!marked[v]) prim(G, v);     // get a minimum spanning forest
@@ -100,10 +99,10 @@ public class LazyPrimMST {
     }
 
     // run Prim's algorithm
-    private void prim(edu.princeton.cs.algs4.EdgeWeightedGraph G, int s) {
+    private void prim(EdgeWeightedGraph G, int s) {
         scan(G, s);
         while (!pq.isEmpty()) {                        // better to stop when mst has V-1 edges
-            edu.princeton.cs.algs4.Edge e = pq.delMin();                      // smallest edge on pq
+            Edge e = pq.delMin();                      // smallest edge on pq
             int v = e.either(), w = e.other(v);        // two endpoints
             assert marked[v] || marked[w];
             if (marked[v] && marked[w]) continue;      // lazy, both v and w already scanned
@@ -115,10 +114,10 @@ public class LazyPrimMST {
     }
 
     // add all edges e incident to v onto pq if the other endpoint has not yet been scanned
-    private void scan(edu.princeton.cs.algs4.EdgeWeightedGraph G, int v) {
+    private void scan(EdgeWeightedGraph G, int v) {
         assert !marked[v];
         marked[v] = true;
-        for (edu.princeton.cs.algs4.Edge e : G.adj(v))
+        for (Edge e : G.adj(v))
             if (!marked[e.other(v)]) pq.insert(e);
     }
 
@@ -127,7 +126,7 @@ public class LazyPrimMST {
      * @return the edges in a minimum spanning tree (or forest) as
      *    an iterable of edges
      */
-    public Iterable<edu.princeton.cs.algs4.Edge> edges() {
+    public Iterable<Edge> edges() {
         return mst;
     }
 
@@ -140,11 +139,11 @@ public class LazyPrimMST {
     }
 
     // check optimality conditions (takes time proportional to E V lg* V)
-    private boolean check(edu.princeton.cs.algs4.EdgeWeightedGraph G) {
+    private boolean check(EdgeWeightedGraph G) {
 
         // check weight
         double totalWeight = 0.0;
-        for (edu.princeton.cs.algs4.Edge e : edges()) {
+        for (Edge e : edges()) {
             totalWeight += e.weight();
         }
         if (Math.abs(totalWeight - weight()) > FLOATING_POINT_EPSILON) {
@@ -154,7 +153,7 @@ public class LazyPrimMST {
 
         // check that it is acyclic
         UF uf = new UF(G.V());
-        for (edu.princeton.cs.algs4.Edge e : edges()) {
+        for (Edge e : edges()) {
             int v = e.either(), w = e.other(v);
             if (uf.find(v) == uf.find(w)) {
                 System.err.println("Not a forest");
@@ -164,7 +163,7 @@ public class LazyPrimMST {
         }
 
         // check that it is a spanning forest
-        for (edu.princeton.cs.algs4.Edge e : G.edges()) {
+        for (Edge e : G.edges()) {
             int v = e.either(), w = e.other(v);
             if (uf.find(v) != uf.find(w)) {
                 System.err.println("Not a spanning forest");
@@ -173,17 +172,17 @@ public class LazyPrimMST {
         }
 
         // check that it is a minimal spanning forest (cut optimality conditions)
-        for (edu.princeton.cs.algs4.Edge e : edges()) {
+        for (Edge e : edges()) {
 
             // all edges in MST except e
             uf = new UF(G.V());
-            for (edu.princeton.cs.algs4.Edge f : mst) {
+            for (Edge f : mst) {
                 int x = f.either(), y = f.other(x);
                 if (f != e) uf.union(x, y);
             }
 
             // check that e is min weight edge in crossing cut
-            for (edu.princeton.cs.algs4.Edge f : G.edges()) {
+            for (Edge f : G.edges()) {
                 int x = f.either(), y = f.other(x);
                 if (uf.find(x) != uf.find(y)) {
                     if (f.weight() < e.weight()) {
@@ -206,7 +205,7 @@ public class LazyPrimMST {
      */
     public static void main(String[] args) {
         In in = new In(args[0]);
-        edu.princeton.cs.algs4.EdgeWeightedGraph G = new EdgeWeightedGraph(in);
+        EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         LazyPrimMST mst = new LazyPrimMST(G);
         for (Edge e : mst.edges()) {
             StdOut.println(e);

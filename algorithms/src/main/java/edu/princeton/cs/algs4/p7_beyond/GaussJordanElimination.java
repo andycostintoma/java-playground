@@ -35,9 +35,8 @@
 
 package edu.princeton.cs.algs4.p7_beyond;
 
-import edu.princeton.cs.algs4.GaussianElimination;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 /**
  *  The {@code GaussJordanElimination} data type provides methods

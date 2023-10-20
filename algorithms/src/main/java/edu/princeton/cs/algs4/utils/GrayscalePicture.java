@@ -20,14 +20,9 @@
 
 package edu.princeton.cs.algs4.utils;
 
-import edu.princeton.cs.algs4.Picture;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.FileDialog;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,6 +30,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 
 /**
@@ -48,7 +52,7 @@ import java.net.URL;
  *  Pixel (<em>col</em>, <em>row</em>) is column <em>col</em> and row <em>row</em>.
  *  By default, the origin (0, 0) is the pixel in the top-left corner.
  *  These are common conventions in image processing and consistent with Java's
- *  {@link BufferedImage} data type.
+ *  {@link java.awt.image.BufferedImage} data type.
  *  The method {@link #setOriginLowerLeft()} change the origin to the lower left.
  *  <p>
  *  The {@code get()} and {@code set()} methods use {@link Color} objects to get
@@ -296,7 +300,7 @@ public final class GrayscalePicture implements ActionListener {
     }
 
    /**
-     * Returns the grayscale value of pixel ({@code col}, {@code row}) as a {@link Color}.
+     * Returns the grayscale value of pixel ({@code col}, {@code row}) as a {@link java.awt.Color}.
      *
      * @param col the column index
      * @param row the row index
@@ -480,9 +484,9 @@ public final class GrayscalePicture implements ActionListener {
         GrayscalePicture copy = new GrayscalePicture(picture);
         picture.show();
         copy.show();
-        while (!edu.princeton.cs.algs4.StdIn.isEmpty()) {
-            int row = edu.princeton.cs.algs4.StdIn.readInt();
-            int col = edu.princeton.cs.algs4.StdIn.readInt();
+        while (!StdIn.isEmpty()) {
+            int row = StdIn.readInt();
+            int col = StdIn.readInt();
             int gray = StdIn.readInt();
             picture.setGrayscale(row, col, gray);
             StdOut.println(picture.get(row, col));

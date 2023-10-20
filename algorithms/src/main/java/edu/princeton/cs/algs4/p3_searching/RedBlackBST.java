@@ -29,10 +29,10 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.BST;
-import edu.princeton.cs.algs4.SeparateChainingHashST;
-import edu.princeton.cs.algs4.SequentialSearchST;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Queue;
+import edu.princeton.cs.algs4.p7_beyond.AVLTreeST;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 import java.util.NoSuchElementException;
 

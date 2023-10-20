@@ -30,10 +30,9 @@
 
 package edu.princeton.cs.algs4.p3_searching;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.SET;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code AllowFilter} class provides a client for reading in an <em>allowlist</em>
@@ -54,7 +53,7 @@ public class AllowFilter {
     private AllowFilter() { }
 
     public static void main(String[] args) {
-        edu.princeton.cs.algs4.SET<String> set = new SET<String>();
+        SET<String> set = new SET<String>();
 
         // read in strings and add to set
         In in = new In(args[0]);

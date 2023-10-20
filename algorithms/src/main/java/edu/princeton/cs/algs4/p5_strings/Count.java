@@ -34,9 +34,8 @@
 package edu.princeton.cs.algs4.p5_strings;
 
 
-import edu.princeton.cs.algs4.Alphabet;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.utils.StdIn;
+import edu.princeton.cs.algs4.utils.StdOut;
 
 /**
  *  The {@code Count} class provides an {@link Alphabet} client for reading

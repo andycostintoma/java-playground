@@ -11,11 +11,10 @@
 
 package edu.princeton.cs.algs4.p4_graphs;
 
-import edu.princeton.cs.algs4.BreadthFirstPaths;
-import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.EulerianCycle;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Stack;
+import edu.princeton.cs.algs4.utils.In;
+import edu.princeton.cs.algs4.utils.StdOut;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
 import java.util.Iterator;
 
@@ -52,7 +51,7 @@ public class DirectedEulerianCycle {
      *
      * @param G the digraph
      */
-    public DirectedEulerianCycle(edu.princeton.cs.algs4.Digraph G) {
+    public DirectedEulerianCycle(Digraph G) {
 
         // must have at least one edge
         if (G.E() == 0) return;
@@ -114,7 +113,7 @@ public class DirectedEulerianCycle {
     }
 
     // returns any non-isolated vertex; -1 if no such vertex
-    private static int nonIsolatedVertex(edu.princeton.cs.algs4.Digraph G) {
+    private static int nonIsolatedVertex(Digraph G) {
         for (int v = 0; v < G.V(); v++)
             if (G.outdegree(v) > 0)
                 return v;
@@ -134,7 +133,7 @@ public class DirectedEulerianCycle {
     //    - indegree(v) = outdegree(v) for every vertex
     //    - the graph is connected, when viewed as an undirected graph
     //      (ignoring isolated vertices)
-    private static boolean satisfiesNecessaryAndSufficientConditions(edu.princeton.cs.algs4.Digraph G) {
+    private static boolean satisfiesNecessaryAndSufficientConditions(Digraph G) {
 
         // Condition 0: at least 1 edge
         if (G.E() == 0) return false;
@@ -145,14 +144,14 @@ public class DirectedEulerianCycle {
                 return false;
 
         // Condition 2: graph is connected, ignoring isolated vertices
-        edu.princeton.cs.algs4.Graph H = new Graph(G.V());
+        Graph H = new Graph(G.V());
         for (int v = 0; v < G.V(); v++)
             for (int w : G.adj(v))
                 H.addEdge(v, w);
 
         // check that all non-isolated vertices are connected
         int s = nonIsolatedVertex(G);
-        edu.princeton.cs.algs4.BreadthFirstPaths bfs = new BreadthFirstPaths(H, s);
+        BreadthFirstPaths bfs = new BreadthFirstPaths(H, s);
         for (int v = 0; v < G.V(); v++)
             if (H.degree(v) > 0 && !bfs.hasPathTo(v))
                 return false;
@@ -161,7 +160,7 @@ public class DirectedEulerianCycle {
     }
 
     // check that solution is correct
-    private boolean certifySolution(edu.princeton.cs.algs4.Digraph G) {
+    private boolean certifySolution(Digraph G) {
 
         // internal consistency check
         if (hasEulerianCycle() == (cycle() == null)) return false;
@@ -182,7 +181,7 @@ public class DirectedEulerianCycle {
     }
 
 
-    private static void unitTest(edu.princeton.cs.algs4.Digraph G, String description) {
+    private static void unitTest(Digraph G, String description) {
         StdOut.println(description);
         StdOut.println("-------------------------------------");
         StdOut.print(G);
@@ -213,31 +212,31 @@ public class DirectedEulerianCycle {
         int E = Integer.parseInt(args[1]);
 
         // Eulerian cycle
-        edu.princeton.cs.algs4.Digraph G1 = edu.princeton.cs.algs4.p4_graphs.DigraphGenerator.eulerianCycle(V, E);
+        Digraph G1 = DigraphGenerator.eulerianCycle(V, E);
         unitTest(G1, "Eulerian cycle");
 
         // Eulerian path
-        edu.princeton.cs.algs4.Digraph G2 = edu.princeton.cs.algs4.p4_graphs.DigraphGenerator.eulerianPath(V, E);
+        Digraph G2 = DigraphGenerator.eulerianPath(V, E);
         unitTest(G2, "Eulerian path");
 
         // empty digraph
-        edu.princeton.cs.algs4.Digraph G3 = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G3 = new Digraph(V);
         unitTest(G3, "empty digraph");
 
         // self loop
-        edu.princeton.cs.algs4.Digraph G4 = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G4 = new Digraph(V);
         int v4 = StdRandom.uniformInt(V);
         G4.addEdge(v4, v4);
         unitTest(G4, "single self loop");
 
         // union of two disjoint cycles
-        edu.princeton.cs.algs4.Digraph H1 = edu.princeton.cs.algs4.p4_graphs.DigraphGenerator.eulerianCycle(V/2, E/2);
-        edu.princeton.cs.algs4.Digraph H2 = edu.princeton.cs.algs4.p4_graphs.DigraphGenerator.eulerianCycle(V - V/2, E - E/2);
+        Digraph H1 = DigraphGenerator.eulerianCycle(V/2, E/2);
+        Digraph H2 = DigraphGenerator.eulerianCycle(V - V/2, E - E/2);
         int[] perm = new int[V];
         for (int i = 0; i < V; i++)
             perm[i] = i;
         StdRandom.shuffle(perm);
-        edu.princeton.cs.algs4.Digraph G5 = new edu.princeton.cs.algs4.Digraph(V);
+        Digraph G5 = new Digraph(V);
         for (int v = 0; v < H1.V(); v++)
             for (int w : H1.adj(v))
                 G5.addEdge(perm[v], perm[w]);
@@ -247,11 +246,11 @@ public class DirectedEulerianCycle {
         unitTest(G5, "Union of two disjoint cycles");
 
         // random digraph
-        edu.princeton.cs.algs4.Digraph G6 = DigraphGenerator.simple(V, E);
+        Digraph G6 = DigraphGenerator.simple(V, E);
         unitTest(G6, "simple digraph");
 
         // 4-vertex digraph
-        edu.princeton.cs.algs4.Digraph G7 = new Digraph(new In("eulerianD.txt"));
+        Digraph G7 = new Digraph(new In("eulerianD.txt"));
         unitTest(G7, "4-vertex Eulerian digraph");
     }
 

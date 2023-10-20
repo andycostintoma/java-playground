@@ -10,10 +10,10 @@
 
 package edu.princeton.cs.algs4.p6_context;
 
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.utils.StdDraw;
+import edu.princeton.cs.algs4.utils.StdRandom;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  *  The {@code Particle} class represents a particle moving in the unit box,
