@@ -1,4 +1,4 @@
-package com.andy.p1_fundamentals.examples;
+package com.andy.algs4.p1_fundamentals.examples;
 
 
 import edu.princeton.cs.algs4.p1_fundamentals.p3_bags_queues_stacks.Bag;

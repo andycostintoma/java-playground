@@ -1,4 +1,4 @@
-package com.andy.p1_fundamentals.examples;
+package com.andy.algs4.p1_fundamentals.examples;
 
 
 
