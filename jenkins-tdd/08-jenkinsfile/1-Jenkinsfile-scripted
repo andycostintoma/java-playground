@@ -1,0 +1,16 @@
+node('nodejs') {
+    stage('Checkout') {
+        git branch: 'main',
+            url: 'https://github.com/andyt98/do400'
+    }
+    stage('Backend Tests') {
+        dir('08-jenkinsfile/backend') {
+            sh 'node test.js'
+        }
+    }
+    stage('Frontend Tests') {
+        dir('08-jenkinsfile/frontend') {
+            sh 'node test.js'
+        }
+    }
+}

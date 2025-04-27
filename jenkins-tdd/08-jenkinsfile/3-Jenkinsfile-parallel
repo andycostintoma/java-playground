@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        label 'nodejs'
+    }
+    stages {
+        stage('Tests') {
+            parallel {
+                stage('Backend Tests') {
+                    steps {
+                        dir('08-jenkinsfile/backend') {
+                            sh 'node test.js'
+                        }
+                    }
+                }
+                stage('Frontend Tests') {
+                    steps {
+                        dir('08-jenkinsfile/frontend') {
+                            sh 'node test.js'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+ ./mvnw clean pmd:pmd

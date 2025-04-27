@@ -1,0 +1,40 @@
+pipeline {
+    agent {
+        label 'nodejs'
+    }
+    parameters {
+        booleanParam(name: 'RUN_FRONTEND_TESTS', defaultValue: true, description: 'Run frontend tests')
+    }
+    stages {
+        stage('Tests') {
+            parallel {
+                stage('Backend Tests') {
+                    steps {
+                        dir('08-jenkinsfile/backend') {
+                            sh 'node test.js'
+                        }
+                    }
+                }
+                stage('Frontend Tests') {
+                    when {
+                        expression { params.RUN_FRONTEND_TESTS }
+                    }
+                    steps {
+                        dir('08-jenkinsfile/frontend') {
+                            sh 'node test.js'
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            when {
+                expression { env.GIT_BRANCH == 'origin/main' }
+                // For multibranch pipelines, you might use: branch 'main'
+            }
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}
